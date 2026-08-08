@@ -73,11 +73,11 @@ nav.main-nav a[data-page="home"].active, nav.main-nav a[data-page="home"]:hover{
 .synth-sky-night{background:linear-gradient(180deg,#05040a 0%,#0d0a1c 30%,#181233 55%,#221a3d 75%,#2c2147 100%); opacity:var(--p,0);}
 .synth-stars{opacity:var(--p,0);}
 .synth-stars span{position:absolute; width:2px; height:2px; background:#fff; border-radius:50%;}
-.synth-sun{top:16%; left:50%; width:150px; height:150px; margin-left:-75px; bottom:auto; border-radius:50%; background:radial-gradient(circle at 40% 35%, #fff3d6, #F2925B 55%, transparent 78%); box-shadow:0 0 100px 24px rgba(242,146,91,.35); transform:translateY(calc(var(--p,0) * 46vh + var(--p,0) * 76px)); filter:brightness(calc(1 - var(--p,0) * .35)) saturate(calc(1 + var(--p,0) * .3));}
+.synth-sun{top:16%; left:50%; width:calc(150px + 6cm); height:calc(150px + 6cm); margin-left:calc(-75px - 3cm); bottom:auto; border-radius:50%; background:radial-gradient(circle at 40% 35%, #fff3d6, #F2925B 55%, transparent 78%); box-shadow:0 0 100px 24px rgba(242,146,91,.35); transform:translateY(calc(var(--p,0) * 46vh + var(--p,0) * 76px)); filter:brightness(calc(1 - var(--p,0) * .35)) saturate(calc(1 + var(--p,0) * .3));}
 .synth-plane{position:absolute; top:20%; left:-6%; width:30px; height:10px; opacity:calc(.75 - var(--p,0) * .75); animation:planeDrift 34s linear infinite;}
 .synth-plane::before{content:''; position:absolute; inset:0; background:#fff6e6; clip-path:polygon(0% 45%,66% 45%,100% 15%,100% 32%,76% 50%,100% 68%,100% 85%,66% 55%,0% 55%);}
 @keyframes planeDrift{ from{transform:translateX(0);} to{transform:translateX(135vw);} }
-.synth-skyline{left:0; right:0; bottom:9vh; top:auto; height:calc(16vh + 3cm); transform:translateY(calc(var(--p,0) * 55px)); filter:brightness(calc(1 - var(--p,0) * .3));}
+.synth-skyline{left:0; right:0; bottom:9vh; top:auto; height:calc(16vh + 3cm); transform:translateY(calc(var(--p,0) * 55px)); filter:brightness(calc(1.15 - var(--p,0) * .3));}
 .win{fill:transparent; transition:fill .6s ease; filter:none;}
 .win.lit.amber{fill:#fbdca0; filter:drop-shadow(0 0 2px rgba(251,220,160,.75));}
 .win.lit.pink{fill:#ff5fa3; filter:drop-shadow(0 0 2px rgba(255,95,163,.8));}
