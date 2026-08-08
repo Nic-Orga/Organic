@@ -137,29 +137,26 @@ nav.main-nav a[data-page="home"].active, nav.main-nav a[data-page="home"]:hover{
 .game-layer{position:absolute; inset:0;}
 .game-sky-clear{background:radial-gradient(120% 90% at 50% 30%, #1c3b28 0%, #0c1f14 50%, #050b09 100%);}
 .game-sky-deep{background:radial-gradient(90% 70% at 50% 65%, #0f1a2e 0%, #0a0f1c 55%, #050810 100%); opacity:var(--gp,0);}
-.game-moon{position:absolute; top:8%; left:50%; width:76px; height:76px; margin-left:-38px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#f4f3d8,#c9c99a 60%,transparent 78%); box-shadow:0 0 60px 14px rgba(200,220,150,.25); filter:brightness(calc(1 - var(--gp,0) * .25));}
-.game-moonbeam{position:absolute; top:8%; left:50%; width:260px; height:70vh; margin-left:-130px; transform-origin:top center; transform:scaleX(calc(1 - var(--gpEase,0) * .55)); clip-path:polygon(46% 0%, 54% 0%, 74% 100%, 26% 100%); background:linear-gradient(180deg, rgba(220,235,180,.22), rgba(220,235,180,0) 82%); filter:blur(2px); mix-blend-mode:screen;}
-.game-fireflies{position:absolute; inset:0; opacity:calc(.3 + var(--gp,0) * .7);}
-.game-fireflies span{position:absolute; width:3px; height:3px; border-radius:50%; background:#c8e6b0; box-shadow:0 0 4px 1px rgba(200,230,176,.8); opacity:0; animation-name:firefly; animation-timing-function:ease-in-out; animation-iteration-count:infinite;}
-@keyframes firefly{ 0%{transform:translate(0,0); opacity:0;} 15%{opacity:.9;} 50%{transform:translate(14px,-22px); opacity:.5;} 85%{opacity:.8;} 100%{transform:translate(-10px,-40px); opacity:0;} }
+.game-moon{position:absolute; top:8%; left:50%; width:76px; height:76px; margin-left:-38px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#f4f3d8,#c9c99a 60%,transparent 78%); box-shadow:0 0 60px 14px rgba(200,220,150,.25); opacity:calc(.45 + var(--moonFade,1) * .55); filter:brightness(calc(1 - var(--gp,0) * .25));}
+.game-moonbeam{position:absolute; top:6%; left:50%; width:560px; height:66vh; margin-left:-280px; transform-origin:top center; transform:scaleX(calc(1 - var(--gpEase,0) * .92)); clip-path:polygon(44% 0%, 56% 0%, 78% 100%, 22% 100%); background:linear-gradient(180deg, rgba(220,235,180,.24), rgba(220,235,180,0) 82%); filter:blur(4px); mix-blend-mode:screen; opacity:var(--moonFade,1);}
+.game-shootingstar{position:absolute; top:12%; left:-18%; height:2px; width:170px; border-radius:2px; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.95) 75%, #fff); box-shadow:0 0 6px 1px rgba(255,255,255,.7); transform-origin:right center; transform:translate(calc(var(--starP,0) * 145vw), calc(var(--starP,0) * 60vh)) rotate(-30deg) scaleX(calc(1 - var(--starP,0) * .96)); opacity:var(--starOpacity,0); pointer-events:none;}
+.game-fireflies{position:absolute; inset:0; opacity:var(--lampOn,0); z-index:6;}
+.game-fireflies span{position:absolute; width:1.6px; height:1.6px; border-radius:50%; background:#ffd98c; box-shadow:0 0 3px 1px rgba(255,217,140,.85); opacity:0; animation-name:firefly; animation-timing-function:ease-in-out; animation-iteration-count:infinite;}
+@keyframes firefly{ 0%{transform:translate(0,0); opacity:0;} 15%{opacity:.9;} 50%{transform:translate(8px,-12px); opacity:.5;} 85%{opacity:.8;} 100%{transform:translate(-6px,-22px); opacity:0;} }
 .game-vine{position:absolute; inset:0; z-index:2;}
 .game-vine path{filter:drop-shadow(0 0 3px rgba(92,154,82,.4));}
-.game-temple{position:absolute; left:0; right:0; bottom:0; top:auto; height:58vh; z-index:1; transform:translateY(calc((1 - var(--gpEase,0)) * 70px)); filter:brightness(calc(.55 + var(--gpEase,0) * .5));}
-.glow{fill:transparent; transition:fill .7s ease; filter:none;}
-.glow.lit.emerald{fill:#8FE388; filter:drop-shadow(0 0 3px rgba(143,227,136,.8));}
-.glow.lit.violet{fill:#b98aff; filter:drop-shadow(0 0 3px rgba(185,138,255,.85));}
-.glow.lit.cyan{fill:#5fe3ff; filter:drop-shadow(0 0 3px rgba(95,227,255,.85));}
+.game-road{position:absolute; left:0; right:0; bottom:0; top:auto; height:30vh; z-index:1;}
+.game-lamppost{position:absolute; left:40%; bottom:1vh; width:38px; height:150px; z-index:5;}
+.game-lamp-glow{position:absolute; top:2px; left:50%; width:130px; height:130px; margin-left:-65px; border-radius:50%; background:radial-gradient(circle, rgba(255,214,140,.5), transparent 70%); opacity:var(--lampOn,0); filter:blur(2px);}
+.game-lamp-svg{width:100%; height:100%; display:block; filter:drop-shadow(0 6px 8px rgba(0,0,0,.5));}
+.game-lamp-bulb{fill:#ffd98c; opacity:var(--lampOn,0); filter:drop-shadow(0 0 6px rgba(255,214,140,.9));}
 .game-canopy-wrap{position:absolute; top:-4%; width:44%; z-index:4; filter:drop-shadow(0 10px 12px rgba(0,0,0,.5));}
 .game-canopy-wrap.left{left:0; transform:translateX(calc(var(--gpEase,0) * -55%));}
 .game-canopy-wrap.right{right:0; transform:translateX(calc(var(--gpEase,0) * 55%));}
 .game-canopy-wrap.right .game-canopy{transform:scaleX(-1);}
 .game-canopy{width:100%; height:auto; display:block;}
 .game-mist{position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,11,9,0) 46%, #050b09 100%); z-index:3;}
-.game-savepoint{position:absolute; left:50%; bottom:6vh; width:16px; height:16px; margin-left:-8px; z-index:5; opacity:calc(.2 + var(--gpEase,0) * .8);}
-.game-savepoint-core{position:absolute; inset:0; border-radius:3px; background:#8FE388; transform:rotate(45deg); box-shadow:0 0 calc(6px + var(--gpEase,0) * 18px) calc(1px + var(--gpEase,0) * 6px) rgba(143,227,136,calc(.4 + var(--gpEase,0) * .5));}
-.game-savepoint-glow{position:absolute; left:50%; bottom:0; width:60px; height:60px; margin-left:-30px; border-radius:50%; background:radial-gradient(circle, rgba(143,227,136,.5), transparent 70%); animation:savepointPulse 2.4s ease-in-out infinite; opacity:var(--gpEase,0);}
-@keyframes savepointPulse{ 0%,100%{transform:scale(.85); opacity:.5;} 50%{transform:scale(1.15); opacity:.9;} }
-.game-hero-copy{position:absolute; left:0; right:0; bottom:12vh; text-align:center; padding:0 24px; z-index:6;}
+.game-hero-copy{position:absolute; left:0; right:0; bottom:12vh; text-align:center; padding:0 24px; z-index:7;}
 .eyebrow-game{color:#8FE388; font-family:'Press Start 2P',monospace; font-size:.6rem; letter-spacing:.05em;}
 .game-hero-copy h1{font-family:'Chakra Petch',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.02em; font-size:clamp(1.6rem,4.6vw,2.4rem); color:#EDE9C9; margin:10px 0;}
 .game-hero-copy .lede{color:#b9c9b3; max-width:460px; margin:0 auto; font-size:.92rem;}

@@ -126,6 +126,7 @@
       <div class="game-layer game-sky-deep"></div>
       <div class="game-moonbeam"></div>
       <div class="game-moon"></div>
+      <div class="game-shootingstar"></div>
       <div class="game-fireflies" id="gameFireflies"></div>
 
       <svg class="game-vine" viewBox="0 0 1200 420" preserveAspectRatio="none" aria-hidden="true">
@@ -137,14 +138,19 @@
         </g>
       </svg>
 
-      <svg class="game-temple" id="gameTemple" viewBox="0 0 1200 320" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <path id="templeSilhouette" fill-rule="evenodd" clip-rule="evenodd" d="M0,320 L0,190 C40,170 90,185 140,175 C200,162 260,178 320,168 L320,60 C320,30 350,15 390,12 L420,10 L780,10 L810,12 C850,15 880,30 880,60 L880,168 C940,178 1000,162 1060,175 C1110,185 1160,170 1200,190 L1200,320 Z M500,320 L500,140 C500,95 540,70 600,70 C660,70 700,95 700,140 L700,320 Z"/>
-          <clipPath id="templeClip"><use href="#templeSilhouette"/></clipPath>
-        </defs>
-        <use href="#templeSilhouette" fill="#050b09"/>
-        <g id="gameGlowGroup" clip-path="url(#templeClip)"></g>
+      <svg class="game-road" viewBox="0 0 1200 260" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M300,0 L900,0 L1150,260 L50,260 Z" fill="#0b1210"/>
+        <path d="M600,0 L600,260" stroke="#26312a" stroke-width="5" stroke-dasharray="16 18" fill="none"/>
       </svg>
+
+      <div class="game-lamppost">
+        <div class="game-lamp-glow"></div>
+        <svg class="game-lamp-svg" viewBox="0 0 60 220" aria-hidden="true">
+          <rect x="27" y="60" width="6" height="160" fill="#0a120d"/>
+          <path d="M10,60 C10,40 50,40 50,60 C50,50 45,44 30,44 C15,44 10,50 10,60 Z" fill="#0a120d"/>
+          <ellipse class="game-lamp-bulb" cx="30" cy="52" rx="9" ry="7"/>
+        </svg>
+      </div>
 
       <div class="game-canopy-wrap left">
         <svg class="game-canopy" viewBox="0 0 320 260" aria-hidden="true">
@@ -160,11 +166,6 @@
       </div>
 
       <div class="game-mist"></div>
-
-      <div class="game-savepoint">
-        <div class="game-savepoint-glow"></div>
-        <div class="game-savepoint-core"></div>
-      </div>
 
       <div class="game-hero-copy">
         <div class="hero-rule hero-rule-game"></div>

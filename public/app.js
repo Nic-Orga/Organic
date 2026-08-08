@@ -98,50 +98,27 @@ buildSynthStars();
 buildSynthWindows();
 updateSynthScroll();
 
-/* ============ MUSIQUE DE JEU SCROLL HERO (descente dans les ruines) ============ */
+/* ============ MUSIQUE DE JEU SCROLL HERO (route, lampadaire, etoile filante) ============ */
 const gameStage = document.getElementById('gameStage');
 const gameHero = document.getElementById('gameHero');
 const gameFireflies = document.getElementById('gameFireflies');
-const gameGlowGroup = document.getElementById('gameGlowGroup');
 const gameVinePath = document.getElementById('gameVinePath');
-const gameGlowPoints = [];
 let gameVineLength = 0;
 
 function buildGameFireflies(){
   if(!gameFireflies || gameFireflies.childElementCount) return;
   const frag = document.createDocumentFragment();
-  for(let i = 0; i < 22; i++){
+  for(let i = 0; i < 9; i++){
     const s = document.createElement('span');
-    s.style.left = (Math.random()*100).toFixed(2) + '%';
-    s.style.top = (30 + Math.random()*60).toFixed(2) + '%';
-    s.style.animationDuration = (5 + Math.random()*6).toFixed(2) + 's';
+    const angle = Math.random() * Math.PI * 2;
+    const radius = 3 + Math.random() * 8;
+    s.style.left = (40 + Math.cos(angle) * radius).toFixed(2) + '%';
+    s.style.top = (82 + Math.sin(angle) * radius * .5).toFixed(2) + '%';
+    s.style.animationDuration = (4 + Math.random()*5).toFixed(2) + 's';
     s.style.animationDelay = (-Math.random()*10).toFixed(2) + 's';
     frag.appendChild(s);
   }
   gameFireflies.appendChild(frag);
-}
-
-function buildGameGlow(){
-  if(!gameGlowGroup || gameGlowGroup.childElementCount) return;
-  for(let gx = 20; gx < 1180; gx += 24){
-    for(let gy = 30; gy < 300; gy += 20){
-      const jx = gx + (Math.random()*10 - 5);
-      const jy = gy + (Math.random()*8 - 4);
-      const colorRoll = Math.random();
-      const color = colorRoll < .55 ? 'emerald' : (colorRoll < .8 ? 'violet' : 'cyan');
-      const neverLit = Math.random() < .35;
-      const threshold = neverLit ? 2 : (.35 + Math.random()*.55);
-
-      const dot = document.createElementNS(SVG_NS, 'circle');
-      dot.setAttribute('cx', jx.toFixed(1));
-      dot.setAttribute('cy', jy.toFixed(1));
-      dot.setAttribute('r', '2.6');
-      dot.setAttribute('class', 'glow ' + color);
-      gameGlowGroup.appendChild(dot);
-
-      gameGlowPoints.push({ el: dot, threshold });
-    }
-  }
 }
 
 function setupGameVine(){
@@ -151,10 +128,6 @@ function setupGameVine(){
   gameVinePath.style.strokeDashoffset = gameVineLength.toFixed(1);
 }
 
-function updateGameGlow(gp){
-  gameGlowPoints.forEach(w => w.el.classList.toggle('lit', gp > w.threshold));
-}
-
 function updateGameScroll(){
   if(!gameStage || !gameHero || gameStage.offsetHeight === 0) return;
   const stageRect = gameStage.getBoundingClientRect();
@@ -162,16 +135,27 @@ function updateGameScroll(){
   const scrolled = -stageRect.top;
   const gp = clamp(scrolled / scrollRange, 0, 1);
   const gpEase = gp * gp * (3 - 2 * gp);
+  const moonFade = clamp(1 - gp / .6, 0, 1);
+  const lampOn = clamp((gp - .25) / .55, 0, 1);
+  const starP = clamp((gp - .15) / .35, 0, 1);
+  let starOpacity = 0;
+  if(starP > 0 && starP < 1){
+    if(starP < .15) starOpacity = starP / .15;
+    else if(starP > .85) starOpacity = (1 - starP) / .15;
+    else starOpacity = 1;
+  }
   gameHero.style.setProperty('--gp', gp.toFixed(3));
   gameHero.style.setProperty('--gpEase', gpEase.toFixed(3));
-  updateGameGlow(gp);
+  gameHero.style.setProperty('--moonFade', moonFade.toFixed(3));
+  gameHero.style.setProperty('--lampOn', lampOn.toFixed(3));
+  gameHero.style.setProperty('--starP', starP.toFixed(3));
+  gameHero.style.setProperty('--starOpacity', starOpacity.toFixed(3));
   if(gameVinePath && gameVineLength){
     gameVinePath.style.strokeDashoffset = (gameVineLength * (1 - gpEase)).toFixed(1);
   }
 }
 
 buildGameFireflies();
-buildGameGlow();
 setupGameVine();
 updateGameScroll();
 
