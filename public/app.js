@@ -103,7 +103,38 @@ const gameStage = document.getElementById('gameStage');
 const gameHero = document.getElementById('gameHero');
 const gameFireflies = document.getElementById('gameFireflies');
 const gameVinePath = document.getElementById('gameVinePath');
+const gameCityWindowsGroup = document.getElementById('gameCityWindowsGroup');
+const gameCityWindows = [];
 let gameVineLength = 0;
+
+function buildGameCityWindows(){
+  if(!gameCityWindowsGroup || gameCityWindowsGroup.childElementCount) return;
+  for(let gx = 12; gx < 1195; gx += 14){
+    for(let gy = 30; gy < 210; gy += 14){
+      const jx = gx + (Math.random()*6 - 3);
+      const jy = gy + (Math.random()*5 - 2.5);
+      // les fenetres basses (pres du sol) s'allument en premier, les plus hautes en dernier
+      const heightFraction = clamp((220 - jy) / 220, 0, 1);
+      const neverLit = Math.random() < .18;
+      const threshold = neverLit ? 2 : clamp(heightFraction * .78 + Math.random() * .18, 0, .97);
+
+      const win = document.createElementNS(SVG_NS, 'rect');
+      win.setAttribute('x', jx.toFixed(1));
+      win.setAttribute('y', jy.toFixed(1));
+      win.setAttribute('width', '3');
+      win.setAttribute('height', '4');
+      win.setAttribute('rx', '.5');
+      win.setAttribute('class', 'city-win');
+      gameCityWindowsGroup.appendChild(win);
+
+      gameCityWindows.push({ el: win, threshold });
+    }
+  }
+}
+
+function updateGameCityWindows(lampOn){
+  gameCityWindows.forEach(w => w.el.classList.toggle('lit', lampOn > w.threshold));
+}
 
 function buildGameFireflies(){
   if(!gameFireflies || gameFireflies.childElementCount) return;
@@ -156,9 +187,11 @@ function updateGameScroll(){
   if(gameVinePath && gameVineLength){
     gameVinePath.style.strokeDashoffset = (gameVineLength * (1 - gpEase)).toFixed(1);
   }
+  updateGameCityWindows(lampOn);
 }
 
 buildGameFireflies();
+buildGameCityWindows();
 setupGameVine();
 updateGameScroll();
 
