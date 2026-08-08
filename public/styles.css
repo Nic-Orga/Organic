@@ -145,7 +145,7 @@ nav.main-nav a[data-page="home"].active, nav.main-nav a[data-page="home"]:hover{
 @keyframes firefly{ 0%{transform:translate(0,0); opacity:0;} 15%{opacity:.9;} 50%{transform:translate(8px,-12px); opacity:.5;} 85%{opacity:.8;} 100%{transform:translate(-6px,-22px); opacity:0;} }
 .game-vine{position:absolute; inset:0; z-index:2;}
 .game-vine path{filter:drop-shadow(0 0 3px rgba(92,154,82,.4));}
-.game-city{position:absolute; left:0; right:0; bottom:17vh; top:auto; height:36vh; z-index:0; opacity:var(--lampOn,0);}
+.game-city{position:absolute; left:0; right:0; bottom:17vh; top:auto; height:23vh; z-index:0; opacity:var(--lampOn,0);}
 .city-win{fill:transparent; transition:fill .6s ease; filter:none;}
 .city-win.lit{fill:#ffe066; filter:drop-shadow(0 0 2px rgba(255,224,102,.85));}
 .game-road{position:absolute; left:0; right:0; bottom:0; top:auto; height:30vh; z-index:1;}
