@@ -86,7 +86,8 @@ function updateSynthScroll(){
   const scrollRange = Math.max(synthStage.offsetHeight - window.innerHeight, 1);
   const scrolled = -stageRect.top;
   const p = clamp(scrolled / scrollRange, 0, 1);
-  const pTree = p * p;
+  const treeP = clamp(p * 1.6, 0, 1);
+  const pTree = treeP * treeP;
   synthHero.style.setProperty('--p', p.toFixed(3));
   synthHero.style.setProperty('--pTree', pTree.toFixed(3));
   updateSynthWindows(p);
