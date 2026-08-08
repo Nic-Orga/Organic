@@ -105,7 +105,20 @@ const gameFireflies = document.getElementById('gameFireflies');
 const gameVinePath = document.getElementById('gameVinePath');
 const gameCityWindowsGroup = document.getElementById('gameCityWindowsGroup');
 const gameCityWindows = [];
+const gameStars = document.getElementById('gameStars');
 let gameVineLength = 0;
+
+function buildGameStars(){
+  if(!gameStars || gameStars.childElementCount) return;
+  const frag = document.createDocumentFragment();
+  for(let i = 0; i < 55; i++){
+    const s = document.createElement('span');
+    s.style.left = (Math.random()*100).toFixed(2) + '%';
+    s.style.top = (Math.random()*50).toFixed(2) + '%';
+    frag.appendChild(s);
+  }
+  gameStars.appendChild(frag);
+}
 
 function buildGameCityWindows(){
   if(!gameCityWindowsGroup || gameCityWindowsGroup.childElementCount) return;
@@ -191,6 +204,7 @@ function updateGameScroll(){
 }
 
 buildGameFireflies();
+buildGameStars();
 buildGameCityWindows();
 setupGameVine();
 updateGameScroll();

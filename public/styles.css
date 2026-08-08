@@ -137,6 +137,8 @@ nav.main-nav a[data-page="home"].active, nav.main-nav a[data-page="home"]:hover{
 .game-layer{position:absolute; inset:0;}
 .game-sky-clear{background:radial-gradient(120% 90% at 50% 30%, #1c3b28 0%, #0c1f14 50%, #050b09 100%);}
 .game-sky-deep{background:radial-gradient(90% 70% at 50% 65%, #0f1a2e 0%, #0a0f1c 55%, #050810 100%); opacity:var(--gp,0);}
+.game-stars{position:absolute; inset:0; opacity:calc(1 - var(--moonFade,1));}
+.game-stars span{position:absolute; width:2px; height:2px; background:#fff; border-radius:50%; box-shadow:0 0 3px 1px rgba(255,255,255,.6);}
 .game-moon{position:absolute; top:8%; left:50%; width:76px; height:76px; margin-left:-38px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#f4f3d8,#c9c99a 60%,transparent 78%); box-shadow:0 0 60px 14px rgba(200,220,150,.25); opacity:calc(.45 + var(--moonFade,1) * .55); filter:brightness(calc(1 - var(--gp,0) * .25));}
 .game-moonbeam{position:absolute; top:calc(8% + 38px); left:50%; width:760px; height:66vh; margin-left:-380px; transform-origin:top center; transform:scaleX(calc(1 - var(--gpEase,0) * .92)); clip-path:polygon(45% 0%, 55% 0%, 84% 100%, 16% 100%); background:linear-gradient(180deg, rgba(220,235,180,.24), rgba(220,235,180,0) 82%); filter:blur(4px); mix-blend-mode:screen; opacity:var(--moonFade,1);}
 .game-shootingstar{position:absolute; top:14%; left:-20%; height:2px; width:170px; border-radius:2px; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.95) 75%, #fff); box-shadow:0 0 6px 1px rgba(255,255,255,.7); transform-origin:right center; transform:translateX(calc(var(--starP,0) * 145vw)) scaleX(var(--starScale,1)); opacity:var(--starOpacity,0); pointer-events:none;}
