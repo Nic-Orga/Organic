@@ -144,12 +144,15 @@ function updateGameScroll(){
     else if(starP > .85) starOpacity = (1 - starP) / .15;
     else starOpacity = 1;
   }
+  // trainee pleine longueur la majeure partie du trajet, puis effondrement rapide en point sur la toute fin
+  const starScale = starP > .72 ? clamp(1 - (starP - .72) / .28, .035, 1) : 1;
   gameHero.style.setProperty('--gp', gp.toFixed(3));
   gameHero.style.setProperty('--gpEase', gpEase.toFixed(3));
   gameHero.style.setProperty('--moonFade', moonFade.toFixed(3));
   gameHero.style.setProperty('--lampOn', lampOn.toFixed(3));
   gameHero.style.setProperty('--starP', starP.toFixed(3));
   gameHero.style.setProperty('--starOpacity', starOpacity.toFixed(3));
+  gameHero.style.setProperty('--starScale', starScale.toFixed(3));
   if(gameVinePath && gameVineLength){
     gameVinePath.style.strokeDashoffset = (gameVineLength * (1 - gpEase)).toFixed(1);
   }
