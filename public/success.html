@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merci ! — Organic</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body{margin:0; background:#06070a; color:#EDEAE2; font-family:'Inter',sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px;}
+  .card{max-width:440px; text-align:center;}
+  h1{font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:2rem; margin-bottom:12px;}
+  p{color:rgba(237,234,226,.6); margin-bottom:24px;}
+  .links a{display:block; background:#12141c; border:1px solid rgba(237,234,226,.1); border-radius:10px; padding:14px 18px; margin-bottom:10px; text-decoration:none; color:#8FE388; text-align:left;}
+  a.back{color:#F2925B; margin-top:20px; display:inline-block;}
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Merci pour votre achat !</h1>
+    <p id="status">Vérification du paiement…</p>
+    <div class="links" id="links"></div>
+    <a class="back" href="/">← Retour à Organic</a>
+  </div>
+<script>
+  const params = new URLSearchParams(location.search);
+  const sessionId = params.get('session_id');
+  const statusEl = document.getElementById('status');
+  const linksEl = document.getElementById('links');
+
+  if(!sessionId){
+    statusEl.textContent = "Session introuvable.";
+  } else {
+    fetch('/api/checkout/session/' + sessionId)
+      .then(r => r.json().then(data => ({ ok: r.ok, data })))
+      .then(({ ok, data }) => {
+        if(!ok){ statusEl.textContent = data.error || "Paiement non confirmé."; return; }
+        statusEl.textContent = "Voici vos liens de téléchargement :";
+        linksEl.innerHTML = data.tracks.map(t =>
+          t.downloadLink
+            ? `<a href="${t.downloadLink}" target="_blank" rel="noopener">${t.title} — télécharger</a>`
+            : `<div style="color:rgba(237,234,226,.4);padding:10px 0;">${t.title} — lien non fourni</div>`
+        ).join('');
+      })
+      .catch(() => { statusEl.textContent = "Erreur de vérification du paiement."; });
+  }
+</script>
+</body>
+</html>

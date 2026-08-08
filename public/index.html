@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organic — Musique pour la nuit</title>
+<meta name="description" content="Synthwave, musiques de jeu et paysages sonores électroniques pour la nuit et la solitude. Écoutez et achetez directement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chakra+Petch:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <span class="logo">Organic</span>
+    <nav class="main-nav">
+      <a href="#home" data-page="home" class="active">Accueil</a>
+      <a href="#synthwave" data-page="synthwave">Synthwave</a>
+      <a href="#game" data-page="game">Musique de jeu</a>
+      <a href="#calm" data-page="calm">Ambient &amp; Calme</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page active" id="page-home">
+    <div class="home-hero">
+      <h1>Trois mondes sonores. Une seule nuit.</h1>
+      <p>Ici, la nuit se décline en trois ambiances : les toits roses du synthwave, les ruines vertes des musiques de jeu, et le silence bleu nuit des morceaux calmes. Choisis ton monde.</p>
+    </div>
+    <div class="style-grid">
+      <a href="#synthwave" data-page="synthwave" class="style-card sc-synth">
+        <h3>Synthwave</h3>
+        <p>Néons, routes vides, nostalgie électrique.</p>
+      </a>
+      <a href="#game" data-page="game" class="style-card sc-game">
+        <h3>Musique de jeu</h3>
+        <p>Cartes à explorer, silences à sauvegarder.</p>
+      </a>
+      <a href="#calm" data-page="calm" class="style-card sc-calm">
+        <h3>Ambient &amp; Calme</h3>
+        <p>Chambres vides, ciels immenses, solitude.</p>
+      </a>
+    </div>
+    <div class="teaser-wrap">
+      <h2>Derniers ajouts</h2>
+      <div class="teaser-grid" id="home-teaser"></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-synthwave">
+    <div class="synth-hero">
+      <div class="synth-sky"></div>
+      <div class="synth-sun"></div>
+      <div class="synth-skyline"></div>
+      <div class="synth-ground"></div>
+      <div class="palm left"><div class="trunk"></div><div class="crown"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+      <div class="palm right"><div class="trunk"></div><div class="crown"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+      <div class="synth-hero-copy">
+        <p class="eyebrow eyebrow-synth">Onglet 01 — Synthwave</p>
+        <h1>La ville ne dort jamais.</h1>
+        <p class="lede">Synthés chauds, basses rondes, routes vides sous les néons. De la musique pour rouler seul, la nuit.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="page-head"><h2>Les titres</h2><p>Synthwave — nappes analogiques et nostalgie électrique.</p></div>
+      <div class="bundle-bar hidden" id="bundle-synthwave"></div>
+      <div class="tg-synthwave" id="list-synthwave"></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-game">
+    <div class="game-hero">
+      <div class="gb1 game-blob"></div>
+      <div class="gb2 game-blob"></div>
+      <div class="gb3 game-blob"></div>
+      <div class="game-moon"></div>
+      <div class="game-ruins"></div>
+      <div class="game-mist"></div>
+      <div class="game-hero-copy">
+        <p class="eyebrow eyebrow-game">Onglet 02 — Musique de jeu</p>
+        <h1>Une carte pour explorer la nuit.</h1>
+        <p class="lede">Des boucles pensées pour l'exploration, la pause, la sauvegarde avant de continuer.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="page-head"><h2>Les titres</h2><p>Musique de jeu — exploration, ambiance, pause.</p></div>
+      <div class="bundle-bar hidden" id="bundle-game"></div>
+      <div class="tg-game" id="list-game"></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-calm">
+    <div class="calm-hero">
+      <div class="calm-pole"></div>
+      <div class="calm-cloud"></div>
+      <div class="calm-hills"></div>
+      <div class="calm-hero-copy">
+        <p class="eyebrow eyebrow-calm">Onglet 03 — Ambient &amp; Calme</p>
+        <h1>Ce que la nuit ne dit pas.</h1>
+        <p class="lede">Des espaces sonores presque silencieux, pour l'heure creuse et la solitude habitée.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="page-head"><h2>Les titres</h2><p>Ambient &amp; calme — pour l'insomnie et l'heure creuse.</p></div>
+      <div class="bundle-bar hidden" id="bundle-calm"></div>
+      <div class="tg-calm" id="list-calm"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Organic — © 2026. <a id="artist-link">Espace artiste</a>
+</footer>
+
+<button class="cart-fab" id="cart-toggle">🌙 Panier <span id="cart-count">0</span></button>
+<button class="add-fab hidden" id="add-fab">+ Ajouter un titre</button>
+<div class="scrim" id="scrim"></div>
+
+<aside class="cart-panel" id="cart-panel">
+  <div class="cart-head"><h3>Panier</h3><button class="cart-close" id="cart-close">×</button></div>
+  <div class="cart-items" id="cart-items"><p class="cart-empty">Votre panier est vide.</p></div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>Total</span><span id="cart-total">0,00&nbsp;€</span></div>
+    <button class="btn" id="checkout-btn" disabled>Commander</button>
+  </div>
+</aside>
+
+<div class="modal" id="artist-modal">
+  <div class="modal-card">
+    <h3>Espace artiste</h3>
+    <p>Permet d'ajouter ou de retirer des titres du catalogue.</p>
+    <form id="artist-form">
+      <label for="artist-pass">Mot de passe</label>
+      <input id="artist-pass" type="password" required autocomplete="current-password">
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="artist-cancel">Annuler</button>
+        <button type="submit" class="btn" style="background:#F2925B;color:#1b1130;">Entrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="add-modal">
+  <div class="modal-card">
+    <h3>Ajouter un titre</h3>
+    <form id="add-form">
+      <label for="at-title">Titre</label>
+      <input id="at-title" type="text" required placeholder="Nom du morceau">
+      <label for="at-genre">Style</label>
+      <select id="at-genre" required>
+        <option value="synthwave">Synthwave</option>
+        <option value="game">Musique de jeu</option>
+        <option value="calm">Ambient &amp; Calme</option>
+      </select>
+      <label for="at-price">Prix (€)</label>
+      <input id="at-price" type="number" step="0.5" min="0" value="2.5" required>
+      <label for="at-audio">Aperçu audio (fichier, max 8 Mo)</label>
+      <input id="at-audio" type="file" accept="audio/*">
+      <p class="hint">Un extrait de 20 à 40 secondes suffit largement pour l'aperçu.</p>
+      <label for="at-cover">Pochette (image, optionnel, max 8 Mo)</label>
+      <input id="at-cover" type="file" accept="image/*">
+      <label for="at-link">Lien de téléchargement du fichier complet</label>
+      <input id="at-link" type="url" placeholder="https://drive.google.com/...">
+      <p class="hint">Envoyé à l'acheteur après un paiement confirmé.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="add-cancel">Annuler</button>
+        <button type="submit" class="btn" style="background:#8FE388;color:#0c1613;">Ajouter le titre</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<audio id="global-player" style="display:none;"></audio>
+
+<script src="/app.js"></script>
+</body>
+</html>
