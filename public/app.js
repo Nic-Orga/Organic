@@ -190,6 +190,15 @@ function updateGameScroll(){
   }
   // trainee pleine longueur la majeure partie du trajet, puis effondrement rapide en point sur la toute fin
   const starScale = starP > .72 ? clamp(1 - (starP - .72) / .28, .035, 1) : 1;
+  // deuxieme etoile filante : plus bas dans le ciel, en diagonale, decalee dans le temps
+  const star2P = clamp((gp - .28) / .32, 0, 1);
+  let star2Opacity = 0;
+  if(star2P > 0 && star2P < 1){
+    if(star2P < .15) star2Opacity = star2P / .15;
+    else if(star2P > .85) star2Opacity = (1 - star2P) / .15;
+    else star2Opacity = 1;
+  }
+  const star2Scale = star2P > .72 ? clamp(1 - (star2P - .72) / .28, .035, 1) : 1;
   gameHero.style.setProperty('--gp', gp.toFixed(3));
   gameHero.style.setProperty('--gpEase', gpEase.toFixed(3));
   gameHero.style.setProperty('--moonFade', moonFade.toFixed(3));
@@ -197,6 +206,9 @@ function updateGameScroll(){
   gameHero.style.setProperty('--starP', starP.toFixed(3));
   gameHero.style.setProperty('--starOpacity', starOpacity.toFixed(3));
   gameHero.style.setProperty('--starScale', starScale.toFixed(3));
+  gameHero.style.setProperty('--star2P', star2P.toFixed(3));
+  gameHero.style.setProperty('--star2Opacity', star2Opacity.toFixed(3));
+  gameHero.style.setProperty('--star2Scale', star2Scale.toFixed(3));
   if(gameVinePath && gameVineLength){
     gameVinePath.style.strokeDashoffset = (gameVineLength * (1 - gpEase)).toFixed(1);
   }

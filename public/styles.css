@@ -142,12 +142,13 @@ nav.main-nav a[data-page="home"].active, nav.main-nav a[data-page="home"]:hover{
 .game-moon{position:absolute; top:8%; left:50%; width:76px; height:76px; margin-left:-38px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#f4f3d8,#c9c99a 60%,transparent 78%); box-shadow:0 0 60px 14px rgba(200,220,150,.25); opacity:calc(.45 + var(--moonFade,1) * .55); filter:brightness(calc(1 - var(--gp,0) * .25));}
 .game-moonbeam{position:absolute; top:calc(8% + 38px); left:50%; width:760px; height:66vh; margin-left:-380px; transform-origin:top center; transform:scaleX(calc(1 - var(--gpEase,0) * .92)); clip-path:polygon(45% 0%, 55% 0%, 84% 100%, 16% 100%); background:linear-gradient(180deg, rgba(220,235,180,.24), rgba(220,235,180,0) 82%); filter:blur(4px); mix-blend-mode:screen; opacity:var(--moonFade,1);}
 .game-shootingstar{position:absolute; top:14%; left:-20%; height:2px; width:170px; border-radius:2px; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.95) 75%, #fff); box-shadow:0 0 6px 1px rgba(255,255,255,.7); transform-origin:right center; transform:translateX(calc(var(--starP,0) * 145vw)) scaleX(var(--starScale,1)); opacity:var(--starOpacity,0); pointer-events:none;}
+.game-shootingstar2{position:absolute; top:26%; left:-20%; height:2px; width:150px; border-radius:2px; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.9) 75%, #fff); box-shadow:0 0 5px 1px rgba(255,255,255,.6); transform-origin:right center; transform:translate(calc(var(--star2P,0) * 140vw), calc(var(--star2P,0) * 32vh)) rotate(-24deg) scaleX(var(--star2Scale,1)); opacity:var(--star2Opacity,0); pointer-events:none;}
 .game-fireflies{position:absolute; inset:0; opacity:var(--lampOn,0); z-index:6;}
 .game-fireflies span{position:absolute; width:1.6px; height:1.6px; border-radius:50%; background:#ffd98c; box-shadow:0 0 3px 1px rgba(255,217,140,.85); opacity:0; animation-name:firefly; animation-timing-function:ease-in-out; animation-iteration-count:infinite;}
 @keyframes firefly{ 0%{transform:translate(0,0); opacity:0;} 15%{opacity:.9;} 50%{transform:translate(8px,-12px); opacity:.5;} 85%{opacity:.8;} 100%{transform:translate(-6px,-22px); opacity:0;} }
 .game-vine{position:absolute; inset:0; z-index:2;}
 .game-vine path{filter:drop-shadow(0 0 3px rgba(92,154,82,.4));}
-.game-city{position:absolute; left:0; right:0; bottom:17vh; top:auto; height:23vh; z-index:0; opacity:var(--lampOn,0);}
+.game-city{position:absolute; left:0; right:0; bottom:17vh; top:auto; height:23vh; z-index:0; opacity:var(--lampOn,0); filter:drop-shadow(0 6px 8px rgba(0,0,0,.5));}
 .city-win{fill:transparent; transition:fill .6s ease; filter:none;}
 .city-win.lit{fill:#ffe066; filter:drop-shadow(0 0 2px rgba(255,224,102,.85));}
 .game-road{position:absolute; left:0; right:0; bottom:0; top:auto; height:17vh; z-index:1;}
