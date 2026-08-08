@@ -17,8 +17,86 @@ function showPage(page){
   PAGES.forEach(p => document.getElementById('page-'+p).classList.toggle('active', p===page));
   document.querySelectorAll('.main-nav a').forEach(a => a.classList.toggle('active', a.dataset.page===page));
   window.scrollTo(0,0);
+  if(page === 'synthwave') requestAnimationFrame(updateSynthScroll);
 }
 window.addEventListener('hashchange', () => showPage(location.hash.slice(1) || 'home'));
+
+/* ============ SYNTHWAVE SCROLL HERO (jour -> nuit) ============ */
+const synthStage = document.getElementById('synthStage');
+const synthHero = document.getElementById('synthHero');
+const synthStars = document.getElementById('synthStars');
+const synthWindowsGroup = document.getElementById('synthWindowsGroup');
+const synthWindowsGroupReflect = document.getElementById('synthWindowsGroupReflect');
+const synthWindows = [];
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
+
+function buildSynthStars(){
+  if(!synthStars || synthStars.childElementCount) return;
+  const frag = document.createDocumentFragment();
+  for(let i = 0; i < 60; i++){
+    const s = document.createElement('span');
+    s.style.left = (Math.random()*100).toFixed(2) + '%';
+    s.style.top = (Math.random()*55).toFixed(2) + '%';
+    frag.appendChild(s);
+  }
+  synthStars.appendChild(frag);
+}
+
+function buildSynthWindows(){
+  if(!synthWindowsGroup || !synthWindowsGroupReflect || synthWindowsGroup.childElementCount) return;
+  for(let gx = 10; gx < 1190; gx += 20){
+    for(let gy = 25; gy < 250; gy += 17){
+      const jx = gx + (Math.random()*8 - 4);
+      const jy = gy + (Math.random()*6 - 3);
+      const colorRoll = Math.random();
+      const color = colorRoll < .72 ? 'amber' : (colorRoll < .88 ? 'pink' : 'cyan');
+      const neverLit = Math.random() < .3;
+      const threshold = neverLit ? 2 : (.45 + Math.random()*.45);
+
+      const rect = document.createElementNS(SVG_NS, 'rect');
+      rect.setAttribute('x', jx.toFixed(1));
+      rect.setAttribute('y', jy.toFixed(1));
+      rect.setAttribute('width', '4');
+      rect.setAttribute('height', '5');
+      rect.setAttribute('rx', '.5');
+      rect.setAttribute('class', 'win ' + color);
+      synthWindowsGroup.appendChild(rect);
+
+      const reflectRect = rect.cloneNode();
+      synthWindowsGroupReflect.appendChild(reflectRect);
+
+      synthWindows.push({ el: rect, reflectEl: reflectRect, threshold });
+    }
+  }
+}
+
+function updateSynthWindows(p){
+  synthWindows.forEach(w => {
+    const lit = p > w.threshold;
+    w.el.classList.toggle('lit', lit);
+    w.reflectEl.classList.toggle('lit', lit);
+  });
+}
+
+function updateSynthScroll(){
+  if(!synthStage || !synthHero || synthStage.offsetHeight === 0) return;
+  const stageRect = synthStage.getBoundingClientRect();
+  const scrollRange = Math.max(synthStage.offsetHeight - window.innerHeight, 1);
+  const scrolled = -stageRect.top;
+  const p = clamp(scrolled / scrollRange, 0, 1);
+  const pTree = p * p;
+  synthHero.style.setProperty('--p', p.toFixed(3));
+  synthHero.style.setProperty('--pTree', pTree.toFixed(3));
+  updateSynthWindows(p);
+}
+
+buildSynthStars();
+buildSynthWindows();
+updateSynthScroll();
+window.addEventListener('scroll', () => requestAnimationFrame(updateSynthScroll), { passive: true });
+window.addEventListener('resize', () => requestAnimationFrame(updateSynthScroll));
 
 /* ============ CATALOG ============ */
 async function loadCatalog(){
