@@ -145,9 +145,9 @@ nav.main-nav a[data-page="home"].active, nav.main-nav a[data-page="home"]:hover{
 @keyframes firefly{ 0%{transform:translate(0,0); opacity:0;} 15%{opacity:.9;} 50%{transform:translate(8px,-12px); opacity:.5;} 85%{opacity:.8;} 100%{transform:translate(-6px,-22px); opacity:0;} }
 .game-vine{position:absolute; inset:0; z-index:2;}
 .game-vine path{filter:drop-shadow(0 0 3px rgba(92,154,82,.4));}
-.game-city{position:absolute; left:0; right:0; bottom:26vh; top:auto; height:26vh; z-index:0; opacity:var(--lampOn,0);}
+.game-city{position:absolute; left:0; right:0; bottom:25vh; top:auto; height:26vh; z-index:0; opacity:var(--lampOn,0);}
 .game-road{position:absolute; left:0; right:0; bottom:0; top:auto; height:30vh; z-index:1;}
-.game-lamp-trace{position:absolute; left:0; right:0; bottom:12vh; top:auto; height:15vh; z-index:2; clip-path:polygon(39.5% 100%, 40.5% 100%, 96% 0%, 4% 0%); background:linear-gradient(180deg, rgba(255,206,150,.1) 0%, rgba(255,170,120,.4) 28%, rgba(255,120,150,.45) 60%, rgba(220,110,180,.32) 100%); transform-origin:bottom center; transform:scaleY(var(--lampOn,0)); mix-blend-mode:screen; pointer-events:none;}
+.game-lamp-trace{position:absolute; left:0; right:0; bottom:12vh; top:auto; height:13.5vh; z-index:2; clip-path:polygon(39.5% 100%, 40.5% 100%, 96% 0%, 4% 0%); background:linear-gradient(180deg, rgba(255,206,150,.1) 0%, rgba(255,170,120,.4) 28%, rgba(255,120,150,.45) 60%, rgba(220,110,180,.32) 100%); transform-origin:bottom center; transform:scaleY(var(--lampOn,0)); mix-blend-mode:screen; pointer-events:none;}
 .game-lamppost{position:absolute; left:40%; bottom:1vh; width:38px; height:150px; margin-left:-19px; z-index:5;}
 .game-lamp-glow{position:absolute; top:2px; left:50%; width:130px; height:130px; margin-left:-65px; border-radius:50%; background:radial-gradient(circle, rgba(255,214,140,.5), transparent 70%); opacity:var(--lampOn,0); filter:blur(2px);}
 .game-lamp-svg{width:100%; height:100%; display:block; filter:drop-shadow(0 6px 8px rgba(0,0,0,.5));}
