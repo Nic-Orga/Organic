@@ -18,6 +18,7 @@ function showPage(page){
   document.querySelectorAll('.main-nav a').forEach(a => a.classList.toggle('active', a.dataset.page===page));
   window.scrollTo(0,0);
   if(page === 'synthwave') requestAnimationFrame(updateSynthScroll);
+  if(page === 'game') requestAnimationFrame(updateGameScroll);
 }
 window.addEventListener('hashchange', () => showPage(location.hash.slice(1) || 'home'));
 
@@ -96,8 +97,86 @@ function updateSynthScroll(){
 buildSynthStars();
 buildSynthWindows();
 updateSynthScroll();
-window.addEventListener('scroll', () => requestAnimationFrame(updateSynthScroll), { passive: true });
-window.addEventListener('resize', () => requestAnimationFrame(updateSynthScroll));
+
+/* ============ MUSIQUE DE JEU SCROLL HERO (descente dans les ruines) ============ */
+const gameStage = document.getElementById('gameStage');
+const gameHero = document.getElementById('gameHero');
+const gameFireflies = document.getElementById('gameFireflies');
+const gameGlowGroup = document.getElementById('gameGlowGroup');
+const gameVinePath = document.getElementById('gameVinePath');
+const gameGlowPoints = [];
+let gameVineLength = 0;
+
+function buildGameFireflies(){
+  if(!gameFireflies || gameFireflies.childElementCount) return;
+  const frag = document.createDocumentFragment();
+  for(let i = 0; i < 22; i++){
+    const s = document.createElement('span');
+    s.style.left = (Math.random()*100).toFixed(2) + '%';
+    s.style.top = (30 + Math.random()*60).toFixed(2) + '%';
+    s.style.animationDuration = (5 + Math.random()*6).toFixed(2) + 's';
+    s.style.animationDelay = (-Math.random()*10).toFixed(2) + 's';
+    frag.appendChild(s);
+  }
+  gameFireflies.appendChild(frag);
+}
+
+function buildGameGlow(){
+  if(!gameGlowGroup || gameGlowGroup.childElementCount) return;
+  for(let gx = 20; gx < 1180; gx += 24){
+    for(let gy = 30; gy < 300; gy += 20){
+      const jx = gx + (Math.random()*10 - 5);
+      const jy = gy + (Math.random()*8 - 4);
+      const colorRoll = Math.random();
+      const color = colorRoll < .55 ? 'emerald' : (colorRoll < .8 ? 'violet' : 'cyan');
+      const neverLit = Math.random() < .35;
+      const threshold = neverLit ? 2 : (.35 + Math.random()*.55);
+
+      const dot = document.createElementNS(SVG_NS, 'circle');
+      dot.setAttribute('cx', jx.toFixed(1));
+      dot.setAttribute('cy', jy.toFixed(1));
+      dot.setAttribute('r', '2.6');
+      dot.setAttribute('class', 'glow ' + color);
+      gameGlowGroup.appendChild(dot);
+
+      gameGlowPoints.push({ el: dot, threshold });
+    }
+  }
+}
+
+function setupGameVine(){
+  if(!gameVinePath) return;
+  gameVineLength = gameVinePath.getTotalLength();
+  gameVinePath.style.strokeDasharray = gameVineLength.toFixed(1);
+  gameVinePath.style.strokeDashoffset = gameVineLength.toFixed(1);
+}
+
+function updateGameGlow(gp){
+  gameGlowPoints.forEach(w => w.el.classList.toggle('lit', gp > w.threshold));
+}
+
+function updateGameScroll(){
+  if(!gameStage || !gameHero || gameStage.offsetHeight === 0) return;
+  const stageRect = gameStage.getBoundingClientRect();
+  const scrollRange = Math.max(gameStage.offsetHeight - window.innerHeight, 1);
+  const scrolled = -stageRect.top;
+  const gp = clamp(scrolled / scrollRange, 0, 1);
+  const gpEase = gp * gp * (3 - 2 * gp);
+  gameHero.style.setProperty('--gp', gp.toFixed(3));
+  gameHero.style.setProperty('--gpEase', gpEase.toFixed(3));
+  updateGameGlow(gp);
+  if(gameVinePath && gameVineLength){
+    gameVinePath.style.strokeDashoffset = (gameVineLength * (1 - gpEase)).toFixed(1);
+  }
+}
+
+buildGameFireflies();
+buildGameGlow();
+setupGameVine();
+updateGameScroll();
+
+window.addEventListener('scroll', () => requestAnimationFrame(() => { updateSynthScroll(); updateGameScroll(); }), { passive: true });
+window.addEventListener('resize', () => requestAnimationFrame(() => { updateSynthScroll(); updateGameScroll(); }));
 
 /* ============ CATALOG ============ */
 async function loadCatalog(){

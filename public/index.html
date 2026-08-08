@@ -120,44 +120,59 @@
   </section>
 
   <section class="page" id="page-game">
-    <div class="game-hero" data-parallax-root>
-      <div class="game-layer game-sky" data-speed=".08"></div>
-      <div class="game-moon" data-speed=".05"></div>
-      <div class="game-layer game-beams" data-speed=".14" aria-hidden="true">
-        <span class="beam b1"></span><span class="beam b2"></span><span class="beam b3"></span>
-      </div>
-      <svg class="game-layer game-canopy-far" data-speed=".2" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,0 C60,42 120,8 180,36 C240,58 300,14 360,40 C420,60 480,18 540,44 C600,62 660,16 720,42 C780,60 840,20 900,46 C960,62 1020,22 1080,44 C1130,56 1170,30 1200,42 L1200,0 Z" fill="#0c1f14"/>
-      </svg>
-      <svg class="game-layer game-canopy-near" data-speed=".32" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,12 C50,56 100,20 150,52 C210,74 260,30 320,56 C380,76 430,34 490,60 C560,82 610,38 670,62 C730,82 780,40 840,64 C900,84 950,42 1010,66 C1070,86 1120,46 1200,60 L1200,0 L0,0 Z" fill="#123023"/>
-      </svg>
-      <div class="game-layer game-particles" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <svg class="game-layer game-ruins" data-speed=".48" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,220 L0,120 L60,120 L60,150 L100,150 L100,70 L140,70 L140,60 L150,90 L150,150 L200,150 L200,100 L230,80 L230,150 L270,150 L270,40 L300,60 L300,150 L340,150 L340,110 L380,110 L380,150 L430,150 L430,90 L470,70 L470,150 L520,150 L520,130 L560,130 L560,150 L610,150 L610,60 L640,80 L640,150 L690,150 L690,100 L730,100 L730,150 L780,150 L780,120 L820,120 L820,150 L870,150 L870,50 L900,70 L900,150 L950,150 L950,110 L990,110 L990,150 L1040,150 L1040,130 L1080,130 L1080,150 L1130,150 L1130,90 L1160,90 L1160,150 L1200,150 L1200,220 Z" fill="#050b09"/>
-        <g fill="#1c3b28" opacity=".8">
-          <ellipse cx="90" cy="118" rx="24" ry="15"/>
-          <ellipse cx="220" cy="96" rx="28" ry="17"/>
-          <ellipse cx="450" cy="86" rx="26" ry="16"/>
-          <ellipse cx="620" cy="76" rx="30" ry="18"/>
-          <ellipse cx="880" cy="66" rx="28" ry="17"/>
-          <ellipse cx="1140" cy="86" rx="24" ry="15"/>
-        </g>
-        <g fill="#2a4d33" opacity=".65">
-          <ellipse cx="140" cy="130" rx="18" ry="12"/>
-          <ellipse cx="480" cy="120" rx="20" ry="13"/>
-          <ellipse cx="740" cy="130" rx="18" ry="12"/>
-          <ellipse cx="1000" cy="126" rx="20" ry="13"/>
+    <div class="scroll-stage" id="gameStage">
+    <div class="hero-sticky game-hero" id="gameHero">
+      <div class="game-layer game-sky-clear"></div>
+      <div class="game-layer game-sky-deep"></div>
+      <div class="game-moonbeam"></div>
+      <div class="game-moon"></div>
+      <div class="game-fireflies" id="gameFireflies"></div>
+
+      <svg class="game-vine" viewBox="0 0 1200 420" preserveAspectRatio="none" aria-hidden="true">
+        <path id="gameVinePath" d="M20,412 C130,378 55,322 150,282 C245,240 165,192 270,152 C365,116 300,72 410,42 C495,18 570,26 660,10" fill="none" stroke="#5c9a52" stroke-width="5" stroke-linecap="round"/>
+        <g fill="#5c9a52">
+          <ellipse cx="150" cy="282" rx="10" ry="6" transform="rotate(-28 150 282)"/>
+          <ellipse cx="270" cy="152" rx="10" ry="6" transform="rotate(-32 270 152)"/>
+          <ellipse cx="410" cy="42" rx="9" ry="5" transform="rotate(-20 410 42)"/>
         </g>
       </svg>
+
+      <svg class="game-temple" id="gameTemple" viewBox="0 0 1200 320" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <path id="templeSilhouette" fill-rule="evenodd" clip-rule="evenodd" d="M0,320 L0,190 C40,170 90,185 140,175 C200,162 260,178 320,168 L320,60 C320,30 350,15 390,12 L420,10 L780,10 L810,12 C850,15 880,30 880,60 L880,168 C940,178 1000,162 1060,175 C1110,185 1160,170 1200,190 L1200,320 Z M500,320 L500,140 C500,95 540,70 600,70 C660,70 700,95 700,140 L700,320 Z"/>
+          <clipPath id="templeClip"><use href="#templeSilhouette"/></clipPath>
+        </defs>
+        <use href="#templeSilhouette" fill="#050b09"/>
+        <g id="gameGlowGroup" clip-path="url(#templeClip)"></g>
+      </svg>
+
+      <div class="game-canopy-wrap left">
+        <svg class="game-canopy" viewBox="0 0 320 260" aria-hidden="true">
+          <path d="M0,0 L280,0 C260,40 300,70 260,110 C300,130 270,170 220,180 C240,210 190,230 150,210 C130,250 70,250 60,210 C20,225 -10,190 10,150 C-10,120 10,80 40,60 C10,40 -10,10 0,0 Z" fill="#0e2417"/>
+          <path d="M0,0 L200,0 C185,30 210,55 180,85 C160,60 130,70 120,40 C90,50 70,30 60,0 Z" fill="#163a24"/>
+        </svg>
+      </div>
+      <div class="game-canopy-wrap right">
+        <svg class="game-canopy" viewBox="0 0 320 260" aria-hidden="true">
+          <path d="M0,0 L280,0 C260,40 300,70 260,110 C300,130 270,170 220,180 C240,210 190,230 150,210 C130,250 70,250 60,210 C20,225 -10,190 10,150 C-10,120 10,80 40,60 C10,40 -10,10 0,0 Z" fill="#0e2417"/>
+          <path d="M0,0 L200,0 C185,30 210,55 180,85 C160,60 130,70 120,40 C90,50 70,30 60,0 Z" fill="#163a24"/>
+        </svg>
+      </div>
+
       <div class="game-mist"></div>
+
+      <div class="game-savepoint">
+        <div class="game-savepoint-glow"></div>
+        <div class="game-savepoint-core"></div>
+      </div>
+
       <div class="game-hero-copy">
+        <div class="hero-rule hero-rule-game"></div>
         <p class="eyebrow eyebrow-game">Onglet 02 — Musique de jeu</p>
         <h1>Une carte pour explorer la nuit.</h1>
         <p class="lede">Des boucles pensées pour l'exploration, la pause, la sauvegarde avant de continuer.</p>
       </div>
+    </div>
     </div>
     <div class="container">
       <div class="page-head reveal"><h2>Les titres</h2><p>Musique de jeu — exploration, ambiance, pause.</p></div>
