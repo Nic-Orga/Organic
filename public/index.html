@@ -242,20 +242,26 @@
       </svg>
 
       <svg class="calm-moonground" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,300 L0,150 Q300,70 600,90 Q900,110 1200,60 L1200,300 Z" fill="#9b968f"/>
-        <g fill="#7d786f" opacity=".55">
-          <ellipse cx="130" cy="190" rx="46" ry="16"/>
-          <ellipse cx="340" cy="150" rx="34" ry="12"/>
-          <ellipse cx="560" cy="170" rx="52" ry="18"/>
-          <ellipse cx="800" cy="135" rx="40" ry="14"/>
-          <ellipse cx="1000" cy="175" rx="48" ry="16"/>
-          <ellipse cx="1150" cy="125" rx="30" ry="10"/>
-        </g>
-        <g fill="#6b665f" opacity=".4">
-          <ellipse cx="220" cy="220" rx="26" ry="9"/>
-          <ellipse cx="470" cy="225" rx="22" ry="8"/>
-          <ellipse cx="700" cy="205" rx="30" ry="10"/>
-          <ellipse cx="920" cy="235" rx="24" ry="8"/>
+        <defs>
+          <path id="moonSilhouette" d="M0,300 L0,190 Q600,42 1200,190 L1200,300 Z"/>
+          <clipPath id="moonClip"><use href="#moonSilhouette"/></clipPath>
+        </defs>
+        <use href="#moonSilhouette" fill="#9b968f"/>
+        <g clip-path="url(#moonClip)">
+          <g fill="#7d786f" opacity=".5">
+            <ellipse cx="130" cy="230" rx="46" ry="16"/>
+            <ellipse cx="340" cy="205" rx="34" ry="12"/>
+            <ellipse cx="600" cy="190" rx="40" ry="14"/>
+            <ellipse cx="860" cy="205" rx="40" ry="14"/>
+            <ellipse cx="1070" cy="230" rx="48" ry="16"/>
+          </g>
+          <g fill="#6b665f" opacity=".38">
+            <ellipse cx="220" cy="260" rx="26" ry="9"/>
+            <ellipse cx="470" cy="255" rx="22" ry="8"/>
+            <ellipse cx="700" cy="250" rx="30" ry="10"/>
+            <ellipse cx="920" cy="260" rx="24" ry="8"/>
+            <ellipse cx="1150" cy="270" rx="28" ry="9"/>
+          </g>
         </g>
       </svg>
 

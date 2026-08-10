@@ -200,15 +200,16 @@ nav.main-nav a[data-page="home"].active, nav.main-nav a[data-page="home"]:hover{
 .calm-stars{position:absolute; inset:0;}
 .calm-stars span{position:absolute; width:2px; height:2px; background:#fff; border-radius:50%; opacity:.85; box-shadow:0 0 3px 1px rgba(255,255,255,.5);}
 
-.calm-jupiter{position:absolute; left:6%; bottom:48vh; width:190px; height:190px; z-index:0; opacity:calc(var(--cp,0) * .8); transform:translateY(calc((1 - var(--cpEase,0)) * 30px)); filter:drop-shadow(0 10px 18px rgba(0,0,0,.6)) brightness(.62) saturate(.68) blur(1px);}
-.calm-jupiter-clip{width:100%; height:100%; border-radius:50%; overflow:hidden; position:relative; box-shadow:inset 0 0 30px 8px rgba(0,0,0,.5);}
-.calm-jupiter-surface{position:absolute; top:0; left:0; width:200%; height:100%; background:repeating-linear-gradient(0deg, #dfc9a4 0 5px, #cba878 5px 11px, #b78f5c 11px 15px, #e6d0a8 15px 22px, #ab7f4e 22px 27px, #f1ddb2 27px 32px, #96703f 32px 38px); animation:jupiterSpin 26s linear infinite;}
+.calm-jupiter{position:absolute; left:2%; bottom:44vh; width:250px; height:250px; z-index:0; opacity:calc(var(--cp,0) * .82); transform:translateY(calc((1 - var(--cpEase,0)) * 30px)); filter:drop-shadow(0 14px 22px rgba(0,0,0,.6)) brightness(.68) saturate(.78) blur(.6px);}
+.calm-jupiter-clip{width:100%; height:100%; border-radius:50%; overflow:hidden; position:relative; box-shadow:inset 0 0 40px 10px rgba(0,0,0,.5);}
+.calm-jupiter-clip::after{content:''; position:absolute; inset:0; border-radius:50%; pointer-events:none; background:radial-gradient(circle at 30% 26%, rgba(255,250,235,.5), rgba(255,250,235,0) 46%), radial-gradient(circle at 70% 80%, rgba(0,0,0,.5), rgba(0,0,0,0) 62%);}
+.calm-jupiter-surface{position:absolute; top:0; left:0; width:200%; height:100%; background:repeating-linear-gradient(0deg, #f2e4c4 0px, #e8d5b0 8px, #d4a869 16px, #c99457 22px, #b8834f 28px, #a66b3e 34px, #8b5a35 40px, #a66b3e 46px, #c99457 52px, #e8d5b0 60px, #f2e4c4 68px); animation:jupiterSpin 26s linear infinite;}
 @keyframes jupiterSpin{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
-.calm-jupiter-spot{position:absolute; width:34px; height:20px; border-radius:50%; top:53%; background:radial-gradient(circle at 40% 40%, #e07854, #c65a3e 55%, #8a3a28 90%); box-shadow:0 0 6px 2px rgba(140,60,40,.4);}
+.calm-jupiter-spot{position:absolute; width:42px; height:24px; border-radius:50%; top:53%; background:radial-gradient(circle at 38% 35%, #ea8862, #c65a3e 50%, #7f3524 92%); box-shadow:0 0 10px 3px rgba(140,60,40,.45), inset 0 0 8px rgba(0,0,0,.3);}
 .calm-jupiter-spot.s1{left:20%;}
 .calm-jupiter-spot.s2{left:70%;}
 
-.calm-saturn{position:absolute; right:0%; bottom:22vh; width:400px; height:278px; z-index:1; opacity:var(--cp,0); transform:translateY(calc((1 - var(--cpEase,0)) * 50px)); filter:drop-shadow(0 20px 30px rgba(0,0,0,.55));}
+.calm-saturn{position:absolute; right:-4%; bottom:19vh; width:520px; height:362px; z-index:1; opacity:var(--cp,0); transform:translateY(calc((1 - var(--cpEase,0)) * 50px)); filter:drop-shadow(0 24px 36px rgba(0,0,0,.55));}
 .sat-ring{transform-box:fill-box; transform-origin:center; animation:satSpin 55s linear infinite;}
 @keyframes satSpin{ to{ transform:rotate(360deg); } }
 
