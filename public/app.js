@@ -19,6 +19,7 @@ function showPage(page){
   window.scrollTo(0,0);
   if(page === 'synthwave') requestAnimationFrame(updateSynthScroll);
   if(page === 'game') requestAnimationFrame(updateGameScroll);
+  if(page === 'calm') requestAnimationFrame(updateCalmScroll);
 }
 window.addEventListener('hashchange', () => showPage(location.hash.slice(1) || 'home'));
 
@@ -221,8 +222,39 @@ buildGameCityWindows();
 setupGameVine();
 updateGameScroll();
 
-window.addEventListener('scroll', () => requestAnimationFrame(() => { updateSynthScroll(); updateGameScroll(); }), { passive: true });
-window.addEventListener('resize', () => requestAnimationFrame(() => { updateSynthScroll(); updateGameScroll(); }));
+/* ============ AMBIENT & CALME SCROLL HERO (lune -> Saturne & Jupiter) ============ */
+const calmStage = document.getElementById('calmStage');
+const calmHero = document.getElementById('calmHero');
+const calmStars = document.getElementById('calmStars');
+
+function buildCalmStars(){
+  if(!calmStars || calmStars.childElementCount) return;
+  const frag = document.createDocumentFragment();
+  for(let i = 0; i < 70; i++){
+    const s = document.createElement('span');
+    s.style.left = (Math.random()*100).toFixed(2) + '%';
+    s.style.top = (Math.random()*70).toFixed(2) + '%';
+    frag.appendChild(s);
+  }
+  calmStars.appendChild(frag);
+}
+
+function updateCalmScroll(){
+  if(!calmStage || !calmHero || calmStage.offsetHeight === 0) return;
+  const stageRect = calmStage.getBoundingClientRect();
+  const scrollRange = Math.max(calmStage.offsetHeight - window.innerHeight, 1);
+  const scrolled = -stageRect.top;
+  const cp = clamp(scrolled / scrollRange, 0, 1);
+  const cpEase = cp * cp * (3 - 2 * cp);
+  calmHero.style.setProperty('--cp', cp.toFixed(3));
+  calmHero.style.setProperty('--cpEase', cpEase.toFixed(3));
+}
+
+buildCalmStars();
+updateCalmScroll();
+
+window.addEventListener('scroll', () => requestAnimationFrame(() => { updateSynthScroll(); updateGameScroll(); updateCalmScroll(); }), { passive: true });
+window.addEventListener('resize', () => requestAnimationFrame(() => { updateSynthScroll(); updateGameScroll(); updateCalmScroll(); }));
 
 /* ============ CATALOG ============ */
 async function loadCatalog(){
