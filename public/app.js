@@ -82,12 +82,15 @@ function updateSynthWindows(p){
   });
 }
 
+let synthLastP = null;
 function updateSynthScroll(){
   if(!synthStage || !synthHero || synthStage.offsetHeight === 0) return;
   const stageRect = synthStage.getBoundingClientRect();
   const scrollRange = Math.max(synthStage.offsetHeight - window.innerHeight, 1);
   const scrolled = -stageRect.top;
   const p = clamp(scrolled / scrollRange, 0, 1);
+  if(p === synthLastP) return;
+  synthLastP = p;
   const treeP = clamp(p * 1.6, 0, 1);
   const pTree = treeP * treeP;
   synthHero.style.setProperty('--p', p.toFixed(3));
@@ -173,12 +176,15 @@ function setupGameVine(){
   gameVinePath.style.strokeDashoffset = gameVineLength.toFixed(1);
 }
 
+let gameLastGp = null;
 function updateGameScroll(){
   if(!gameStage || !gameHero || gameStage.offsetHeight === 0) return;
   const stageRect = gameStage.getBoundingClientRect();
   const scrollRange = Math.max(gameStage.offsetHeight - window.innerHeight, 1);
   const scrolled = -stageRect.top;
   const gp = clamp(scrolled / scrollRange, 0, 1);
+  if(gp === gameLastGp) return;
+  gameLastGp = gp;
   const gpEase = gp * gp * (3 - 2 * gp);
   const moonFade = clamp(1 - gp / .6, 0, 1);
   const lampOn = clamp((gp - .25) / .55, 0, 1);
@@ -239,12 +245,15 @@ function buildCalmStars(){
   calmStars.appendChild(frag);
 }
 
+let calmLastCp = null;
 function updateCalmScroll(){
   if(!calmStage || !calmHero || calmStage.offsetHeight === 0) return;
   const stageRect = calmStage.getBoundingClientRect();
   const scrollRange = Math.max(calmStage.offsetHeight - window.innerHeight, 1);
   const scrolled = -stageRect.top;
   const cp = clamp(scrolled / scrollRange, 0, 1);
+  if(cp === calmLastCp) return;
+  calmLastCp = cp;
   const cpEase = cp * cp * (3 - 2 * cp);
   calmHero.style.setProperty('--cp', cp.toFixed(3));
   calmHero.style.setProperty('--cpEase', cpEase.toFixed(3));
@@ -253,8 +262,22 @@ function updateCalmScroll(){
 buildCalmStars();
 updateCalmScroll();
 
-window.addEventListener('scroll', () => requestAnimationFrame(() => { updateSynthScroll(); updateGameScroll(); updateCalmScroll(); }), { passive: true });
-window.addEventListener('resize', () => requestAnimationFrame(() => { updateSynthScroll(); updateGameScroll(); updateCalmScroll(); }));
+const HERO_UPDATERS = { synthwave: updateSynthScroll, game: updateGameScroll, calm: updateCalmScroll };
+function updateActiveHeroScroll(){
+  const activeEl = document.querySelector('main > .page.active');
+  if(!activeEl) return;
+  const page = activeEl.id.replace('page-', '');
+  const updater = HERO_UPDATERS[page];
+  if(updater) updater();
+}
+let heroScrollTicking = false;
+function scheduleHeroScrollUpdate(){
+  if(heroScrollTicking) return;
+  heroScrollTicking = true;
+  requestAnimationFrame(() => { updateActiveHeroScroll(); heroScrollTicking = false; });
+}
+window.addEventListener('scroll', scheduleHeroScrollUpdate, { passive: true });
+window.addEventListener('resize', scheduleHeroScrollUpdate);
 
 /* ============ CATALOG ============ */
 async function loadCatalog(){

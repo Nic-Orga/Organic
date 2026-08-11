@@ -7,6 +7,7 @@
     let ticking = false;
     function update(){
       roots.forEach(root => {
+        if(root.offsetParent === null) return;
         const rect = root.getBoundingClientRect();
         if(rect.bottom < 0 || rect.top > window.innerHeight) return;
         const span = window.innerHeight + rect.height;
