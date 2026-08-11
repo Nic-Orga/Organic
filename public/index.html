@@ -205,6 +205,10 @@
           <div class="calm-jupiter-surface">
             <div class="calm-jupiter-spot s1"></div>
             <div class="calm-jupiter-spot s2"></div>
+            <div class="calm-jupiter-swirl sw1"></div>
+            <div class="calm-jupiter-swirl sw2"></div>
+            <div class="calm-jupiter-swirl sw3"></div>
+            <div class="calm-jupiter-swirl sw4"></div>
           </div>
         </div>
       </div>
@@ -243,24 +247,47 @@
 
       <svg class="calm-moonground" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
         <defs>
-          <path id="moonSilhouette" d="M0,300 L0,190 Q600,42 1200,190 L1200,300 Z"/>
+          <path id="moonSilhouette" d="M0,300 Q600,-20 1200,300 Z"/>
           <clipPath id="moonClip"><use href="#moonSilhouette"/></clipPath>
+          <linearGradient id="moonShade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#c7c2b9"/>
+            <stop offset=".4" stop-color="#9b968f"/>
+            <stop offset="1" stop-color="#726d65"/>
+          </linearGradient>
         </defs>
-        <use href="#moonSilhouette" fill="#9b968f"/>
+        <use href="#moonSilhouette" fill="url(#moonShade)"/>
         <g clip-path="url(#moonClip)">
-          <g fill="#7d786f" opacity=".5">
-            <ellipse cx="130" cy="230" rx="46" ry="16"/>
-            <ellipse cx="340" cy="205" rx="34" ry="12"/>
-            <ellipse cx="600" cy="190" rx="40" ry="14"/>
-            <ellipse cx="860" cy="205" rx="40" ry="14"/>
-            <ellipse cx="1070" cy="230" rx="48" ry="16"/>
+          <g fill="#807a71" opacity=".5">
+            <ellipse cx="90" cy="282" rx="34" ry="12"/>
+            <ellipse cx="280" cy="235" rx="30" ry="11"/>
+            <ellipse cx="470" cy="205" rx="38" ry="13"/>
+            <ellipse cx="600" cy="185" rx="44" ry="15"/>
+            <ellipse cx="740" cy="205" rx="36" ry="12"/>
+            <ellipse cx="930" cy="238" rx="32" ry="11"/>
+            <ellipse cx="1115" cy="285" rx="34" ry="12"/>
           </g>
-          <g fill="#6b665f" opacity=".38">
-            <ellipse cx="220" cy="260" rx="26" ry="9"/>
-            <ellipse cx="470" cy="255" rx="22" ry="8"/>
-            <ellipse cx="700" cy="250" rx="30" ry="10"/>
-            <ellipse cx="920" cy="260" rx="24" ry="8"/>
-            <ellipse cx="1150" cy="270" rx="28" ry="9"/>
+          <g fill="#68635b" opacity=".4">
+            <ellipse cx="180" cy="295" rx="22" ry="8"/>
+            <ellipse cx="380" cy="255" rx="20" ry="7"/>
+            <ellipse cx="540" cy="228" rx="24" ry="8"/>
+            <ellipse cx="660" cy="222" rx="22" ry="7"/>
+            <ellipse cx="820" cy="250" rx="22" ry="7"/>
+            <ellipse cx="1010" cy="290" rx="24" ry="8"/>
+          </g>
+          <g fill="#5a564f" opacity=".3">
+            <ellipse cx="240" cy="298" rx="14" ry="5"/>
+            <ellipse cx="430" cy="270" rx="12" ry="4"/>
+            <ellipse cx="600" cy="255" rx="16" ry="5"/>
+            <ellipse cx="780" cy="272" rx="12" ry="4"/>
+            <ellipse cx="960" cy="298" rx="14" ry="5"/>
+          </g>
+          <g fill="#e7e2d6" opacity=".3">
+            <circle cx="150" cy="298" r="2.5"/>
+            <circle cx="330" cy="260" r="2"/>
+            <circle cx="520" cy="215" r="2.5"/>
+            <circle cx="690" cy="212" r="2"/>
+            <circle cx="870" cy="240" r="2.5"/>
+            <circle cx="1050" cy="292" r="2"/>
           </g>
         </g>
       </svg>
