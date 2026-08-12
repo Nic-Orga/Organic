@@ -31,7 +31,6 @@ function showPage(page){
 window.addEventListener('hashchange', () => showPage(location.hash.slice(1) || 'home'));
 
 /* ============ HOME HERO WebGL HALFTONE BACKGROUND ============ */
-const homeReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let halftone = null;
 function initHalftone(){
   const canvas = document.getElementById('homeCanvas');
@@ -289,9 +288,8 @@ void main() {
   halftone = { gl, program, u, canvas, flatColors, raf:0, start: performance.now() };
   resizeHalftone();
   renderHalftone(0);
-  halftone.resizeHandler = () => { resizeHalftone(); if(homeReduceMotion) renderHalftone((performance.now()-halftone.start)/1000); };
+  halftone.resizeHandler = () => { resizeHalftone(); renderHalftone((performance.now()-halftone.start)/1000); };
   window.addEventListener('resize', halftone.resizeHandler);
-  if(homeReduceMotion) return;
   const loop = (now) => {
     if(!halftone) return;
     if(document.hidden){ halftone.raf = requestAnimationFrame(loop); return; }
@@ -318,7 +316,7 @@ function renderHalftone(t){
   gl.uniform4f(u.u_shape, 1.48, 0.88, 0.50, 0.00);
   gl.uniform4f(u.u_surface, 2.40, 0.91, 0.00, 1.00);
   gl.uniform4f(u.u_finish, 0.00, 0.00, 0.000, 0.06);
-  gl.uniform4f(u.u_transform, 2926.0, 0.00, 0.00, 0.0);
+  gl.uniform4f(u.u_transform, 6.0, 0.00, 0.00, 0.0);
   gl.uniform4f(u.u_space, 0.00, 0.00, 0.0, 0.0);
   gl.uniform4f(u.u_cursor, 0.0, 2.0, 0.65, 0.46);
   gl.drawArrays(gl.TRIANGLES, 0, 3);
@@ -540,7 +538,6 @@ updateGameScroll();
 const calmStage = document.getElementById('calmStage');
 const calmHero = document.getElementById('calmHero');
 const calmStars = document.getElementById('calmStars');
-const calmReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function buildCalmStars(){
   if(!calmStars || calmStars.childElementCount) return;
@@ -668,9 +665,8 @@ void main(){
   blackHole = { gl, program, u, canvas, bloom, bloomCtx, raf:0, start: performance.now() };
   resizeBlackHole();
   renderBlackHole(0);
-  blackHole.resizeHandler = () => { resizeBlackHole(); if(calmReduceMotion) renderBlackHole((performance.now()-blackHole.start)/1000); };
+  blackHole.resizeHandler = () => { resizeBlackHole(); renderBlackHole((performance.now()-blackHole.start)/1000); };
   window.addEventListener('resize', blackHole.resizeHandler);
-  if(calmReduceMotion) return;
   const loop = (now) => {
     if(!blackHole) return;
     renderBlackHole((now - blackHole.start)/1000);
