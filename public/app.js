@@ -24,11 +24,20 @@ function showPage(page){
 
   if(page === 'calm' && currentPageId !== 'calm') initBlackHole();
   else if(page !== 'calm' && currentPageId === 'calm') stopBlackHole();
-  if(page === 'home' && currentPageId !== 'home') initHalftone();
+  if(page === 'home' && currentPageId !== 'home'){ sizeHomeBg(); initHalftone(); }
   else if(page !== 'home' && currentPageId === 'home') stopHalftone();
   currentPageId = page;
 }
 window.addEventListener('hashchange', () => showPage(location.hash.slice(1) || 'home'));
+
+/* ============ HOME BACKGROUND (etend le halftone jusqu'aux boutons de genre) ============ */
+function sizeHomeBg(){
+  const bg = document.querySelector('.home-bg');
+  const genreNav = document.querySelector('.genre-nav');
+  if(!bg || !genreNav) return;
+  bg.style.height = Math.round(genreNav.offsetTop + genreNav.offsetHeight + 140) + 'px';
+}
+window.addEventListener('resize', () => { if(currentPageId === 'home') sizeHomeBg(); });
 
 /* ============ HOME HERO WebGL HALFTONE BACKGROUND ============ */
 let halftone = null;
