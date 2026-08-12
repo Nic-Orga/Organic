@@ -461,8 +461,8 @@ function buildGameFaceWindows(faces, group){
         const jy = gy + (Math.random()*4 - 2);
         // les fenetres basses (pres du sol) s'allument en premier, les plus hautes en dernier
         const heightFraction = clamp((220 - jy) / 220, 0, 1);
-        const neverLit = Math.random() < .35;
-        const threshold = neverLit ? 2 : clamp(heightFraction * .78 + Math.random() * .18, 0, .97);
+        const neverLit = Math.random() < .15;
+        const threshold = neverLit ? 2 : clamp(heightFraction * .65 + Math.random() * .18, 0, .92);
 
         const win = document.createElementNS(SVG_NS, 'rect');
         win.setAttribute('x', jx.toFixed(1));
