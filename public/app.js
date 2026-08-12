@@ -412,9 +412,31 @@ updateSynthScroll();
 const gameStage = document.getElementById('gameStage');
 const gameHero = document.getElementById('gameHero');
 const gameFireflies = document.getElementById('gameFireflies');
-const gameCityWindowsGroup = document.getElementById('gameCityWindowsGroup');
+const gameCityWindowsMidGroup = document.getElementById('gameCityWindowsMid');
+const gameCityWindowsNearGroup = document.getElementById('gameCityWindowsNear');
 const gameCityWindows = [];
 const gameStars = document.getElementById('gameStars');
+
+const gameFacesMid = [
+  { x0:195, x1:307.5, y0:75.6, y1:41.25 },
+  { x0:307.5, x1:405, y0:41.25, y1:65.3 },
+  { x0:450, x1:532.5, y0:103.1, y1:72.2 },
+  { x0:532.5, x1:607.5, y0:72.2, y1:92.8 },
+  { x0:720, x1:802.5, y0:89.4, y1:58.4 },
+  { x0:802.5, x1:885, y0:58.4, y1:79.06 },
+];
+const gameFacesNear = [
+  { x0:0, x1:90, y0:151.25, y1:120.3 },
+  { x0:90, x1:172.5, y0:120.3, y1:140.9 },
+  { x0:345, x1:427.5, y0:165, y1:134.06 },
+  { x0:427.5, x1:502.5, y0:134.06, y1:154.7 },
+  { x0:615, x1:690, y0:161.6, y1:130.6 },
+  { x0:690, x1:757.5, y0:130.6, y1:147.8 },
+  { x0:840, x1:915, y0:154.7, y1:127.2 },
+  { x0:915, x1:990, y0:127.2, y1:144.4 },
+  { x0:1050, x1:1140, y0:168.4, y1:140.9 },
+  { x0:1140, x1:1200, y0:140.9, y1:154.7 },
+];
 
 function buildGameStars(){
   if(!gameStars || gameStars.childElementCount) return;
@@ -428,29 +450,39 @@ function buildGameStars(){
   gameStars.appendChild(frag);
 }
 
-function buildGameCityWindows(){
-  if(!gameCityWindowsGroup || gameCityWindowsGroup.childElementCount) return;
-  for(let gx = 12; gx < 1195; gx += 16){
-    for(let gy = 30; gy < 210; gy += 16){
-      const jx = gx + (Math.random()*6 - 3);
-      const jy = gy + (Math.random()*5 - 2.5);
-      // les fenetres basses (pres du sol) s'allument en premier, les plus hautes en dernier
-      const heightFraction = clamp((220 - jy) / 220, 0, 1);
-      const neverLit = Math.random() < .18;
-      const threshold = neverLit ? 2 : clamp(heightFraction * .78 + Math.random() * .18, 0, .97);
+function buildGameFaceWindows(faces, group){
+  faces.forEach(f => {
+    const span = f.x1 - f.x0;
+    for(let gx = f.x0 + 10; gx < f.x1 - 6; gx += 14){
+      const t = (gx - f.x0) / span;
+      const roofY = f.y0 + (f.y1 - f.y0) * t;
+      for(let gy = roofY + 16; gy < 210; gy += 17){
+        const jx = gx + (Math.random()*4 - 2);
+        const jy = gy + (Math.random()*4 - 2);
+        // les fenetres basses (pres du sol) s'allument en premier, les plus hautes en dernier
+        const heightFraction = clamp((220 - jy) / 220, 0, 1);
+        const neverLit = Math.random() < .35;
+        const threshold = neverLit ? 2 : clamp(heightFraction * .78 + Math.random() * .18, 0, .97);
 
-      const win = document.createElementNS(SVG_NS, 'rect');
-      win.setAttribute('x', jx.toFixed(1));
-      win.setAttribute('y', jy.toFixed(1));
-      win.setAttribute('width', '3');
-      win.setAttribute('height', '4');
-      win.setAttribute('rx', '.5');
-      win.setAttribute('class', 'city-win');
-      gameCityWindowsGroup.appendChild(win);
+        const win = document.createElementNS(SVG_NS, 'rect');
+        win.setAttribute('x', jx.toFixed(1));
+        win.setAttribute('y', jy.toFixed(1));
+        win.setAttribute('width', '3');
+        win.setAttribute('height', '4');
+        win.setAttribute('rx', '.5');
+        win.setAttribute('class', 'city-win');
+        group.appendChild(win);
 
-      gameCityWindows.push({ el: win, threshold });
+        gameCityWindows.push({ el: win, threshold });
+      }
     }
-  }
+  });
+}
+
+function buildGameCityWindows(){
+  if(!gameCityWindowsMidGroup || !gameCityWindowsNearGroup || gameCityWindowsMidGroup.childElementCount) return;
+  buildGameFaceWindows(gameFacesMid, gameCityWindowsMidGroup);
+  buildGameFaceWindows(gameFacesNear, gameCityWindowsNearGroup);
 }
 
 function updateGameCityWindows(lampOn){

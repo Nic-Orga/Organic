@@ -185,31 +185,78 @@
 
       <svg class="game-city" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
         <defs>
-          <linearGradient id="gameBuildingGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#356381"/>
-            <stop offset="14%" stop-color="#2c5470"/>
-            <stop offset="40%" stop-color="#1c3b4d"/>
-            <stop offset="100%" stop-color="#0a1620"/>
+          <linearGradient id="gameFarGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#33447c"/>
+            <stop offset="100%" stop-color="#212f5c"/>
           </linearGradient>
-          <linearGradient id="gameBuildingBackGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#1f3f52"/>
-            <stop offset="100%" stop-color="#0c1c26"/>
+          <linearGradient id="gameMidFaceL" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#2c3a66"/>
+            <stop offset="100%" stop-color="#101a34"/>
           </linearGradient>
-          <path id="gameCitySilhouette" d="M0,220 L0,140 L50,140 L50,90 L100,90 L100,150 L160,150 L160,60 L210,60 L210,140 L270,140 L270,40 L320,40 L320,150 L380,150 L380,80 L430,80 L430,160 L500,160 L500,50 L550,50 L550,150 L620,150 L620,100 L670,100 L670,160 L730,160 L730,70 L780,70 L780,150 L850,150 L850,110 L900,110 L900,160 L960,160 L960,60 L1010,60 L1010,150 L1070,150 L1070,100 L1120,100 L1120,160 L1200,160 L1200,220 Z"/>
-          <clipPath id="gameCityClip"><use href="#gameCitySilhouette"/></clipPath>
+          <linearGradient id="gameMidFaceR" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#1c2850"/>
+            <stop offset="100%" stop-color="#0a1128"/>
+          </linearGradient>
+          <linearGradient id="gameNearFaceL" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#141d3a"/>
+            <stop offset="100%" stop-color="#080c1c"/>
+          </linearGradient>
+          <linearGradient id="gameNearFaceR" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#0d1428"/>
+            <stop offset="100%" stop-color="#05070f"/>
+          </linearGradient>
+          <clipPath id="gameCityClipMid">
+            <polygon points="195,220 195,75.6 307.5,41.25 307.5,220"/>
+            <polygon points="307.5,220 307.5,41.25 405,65.3 405,220"/>
+            <polygon points="450,220 450,103.1 532.5,72.2 532.5,220"/>
+            <polygon points="532.5,220 532.5,72.2 607.5,92.8 607.5,220"/>
+            <polygon points="720,220 720,89.4 802.5,58.4 802.5,220"/>
+            <polygon points="802.5,220 802.5,58.4 885,79.06 885,220"/>
+          </clipPath>
+          <clipPath id="gameCityClipNear">
+            <polygon points="0,220 0,151.25 90,120.3 90,220"/>
+            <polygon points="90,220 90,120.3 172.5,140.9 172.5,220"/>
+            <polygon points="345,220 345,165 427.5,134.06 427.5,220"/>
+            <polygon points="427.5,220 427.5,134.06 502.5,154.7 502.5,220"/>
+            <polygon points="615,220 615,161.6 690,130.6 690,220"/>
+            <polygon points="690,220 690,130.6 757.5,147.8 757.5,220"/>
+            <polygon points="840,220 840,154.7 915,127.2 915,220"/>
+            <polygon points="915,220 915,127.2 990,144.4 990,220"/>
+            <polygon points="1050,220 1050,168.4 1140,140.9 1140,220"/>
+            <polygon points="1140,220 1140,140.9 1200,154.7 1200,220"/>
+          </clipPath>
         </defs>
-        <use href="#gameCitySilhouette" fill="url(#gameBuildingBackGrad)" class="game-city-back"/>
-        <use href="#gameCitySilhouette" fill="url(#gameBuildingGrad)"/>
-        <use href="#gameCitySilhouette" fill="none" class="game-city-rim"/>
-        <g id="gameCityWindowsGroup" clip-path="url(#gameCityClip)"></g>
-        <g clip-path="url(#gameCityClip)"><rect x="0" y="130" width="1200" height="40" fill="#050c11" opacity=".4"/></g>
-        <rect x="284" y="24" width="2" height="16" fill="#081118"/>
-        <circle cx="285" cy="23" r="2" fill="#ffe066" class="game-beacon"/>
-        <g transform="translate(975,36)">
-          <rect x="0" y="6" width="12" height="14" rx="1.5" fill="#081118"/>
-          <circle cx="6" cy="4" r="5" fill="#081118"/>
+        <g class="game-city-far">
+          <polygon points="60,220 60,103.1 135,82.5 135,220" fill="url(#gameFarGrad)"/>
+          <polygon points="135,220 135,82.5 202.5,96.25 202.5,220" fill="url(#gameFarGrad)"/>
+          <polygon points="225,220 225,123.75 285,106.56 285,220" fill="url(#gameFarGrad)"/>
+          <polygon points="285,220 285,106.56 337.5,120.3 337.5,220" fill="url(#gameFarGrad)"/>
+          <polygon points="960,220 960,116.875 1027.5,99.7 1027.5,220" fill="url(#gameFarGrad)"/>
+          <polygon points="1027.5,220 1027.5,99.7 1087.5,113.4 1087.5,220" fill="url(#gameFarGrad)"/>
         </g>
-        <rect x="618" y="90" width="22" height="7" rx="1" fill="#081118"/>
+        <g class="game-city-mid">
+          <polygon points="195,220 195,75.6 307.5,41.25 307.5,220" fill="url(#gameMidFaceL)"/>
+          <polygon points="307.5,220 307.5,41.25 405,65.3 405,220" fill="url(#gameMidFaceR)"/>
+          <polygon points="450,220 450,103.1 532.5,72.2 532.5,220" fill="url(#gameMidFaceL)"/>
+          <polygon points="532.5,220 532.5,72.2 607.5,92.8 607.5,220" fill="url(#gameMidFaceR)"/>
+          <polygon points="720,220 720,89.4 802.5,58.4 802.5,220" fill="url(#gameMidFaceL)"/>
+          <polygon points="802.5,220 802.5,58.4 885,79.06 885,220" fill="url(#gameMidFaceR)"/>
+        </g>
+        <g id="gameCityWindowsMid" clip-path="url(#gameCityClipMid)"></g>
+        <g class="game-city-near">
+          <polygon points="0,220 0,151.25 90,120.3 90,220" fill="url(#gameNearFaceL)"/>
+          <polygon points="90,220 90,120.3 172.5,140.9 172.5,220" fill="url(#gameNearFaceR)"/>
+          <polygon points="345,220 345,165 427.5,134.06 427.5,220" fill="url(#gameNearFaceL)"/>
+          <polygon points="427.5,220 427.5,134.06 502.5,154.7 502.5,220" fill="url(#gameNearFaceR)"/>
+          <polygon points="615,220 615,161.6 690,130.6 690,220" fill="url(#gameNearFaceL)"/>
+          <polygon points="690,220 690,130.6 757.5,147.8 757.5,220" fill="url(#gameNearFaceR)"/>
+          <polygon points="840,220 840,154.7 915,127.2 915,220" fill="url(#gameNearFaceL)"/>
+          <polygon points="915,220 915,127.2 990,144.4 990,220" fill="url(#gameNearFaceR)"/>
+          <polygon points="1050,220 1050,168.4 1140,140.9 1140,220" fill="url(#gameNearFaceL)"/>
+          <polygon points="1140,220 1140,140.9 1200,154.7 1200,220" fill="url(#gameNearFaceR)"/>
+        </g>
+        <g id="gameCityWindowsNear" clip-path="url(#gameCityClipNear)"></g>
+        <rect x="0" y="130" width="1200" height="90" fill="#1f2c5c" opacity=".18"/>
       </svg>
       <svg class="game-road" viewBox="0 0 1200 260" preserveAspectRatio="none" aria-hidden="true">
         <path d="M300,0 L900,0 L1150,260 L50,260 Z" fill="#0b1210"/>
