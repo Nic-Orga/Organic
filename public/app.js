@@ -352,7 +352,11 @@ function renderHomeTeaser(){
   wrap.innerHTML = latest.map(t => {
     const style = t.coverUrl ? ` style="background-image:url('${t.coverUrl}');background-size:cover;background-position:center;"` : '';
     return `<a class="teaser-card" href="#${t.genre}" data-page="${t.genre}">
-      <div class="teaser-cover"${style}></div>
+      <div class="teaser-cover"${style}>
+        <div class="teaser-groove"></div>
+        <div class="teaser-shine"></div>
+        <div class="teaser-spindle"></div>
+      </div>
       <div><p class="teaser-title">${escapeHTML(t.title)}</p><p class="teaser-genre">${GENRE_LABELS[t.genre]}</p></div>
     </a>`;
   }).join('');
