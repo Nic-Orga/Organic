@@ -412,11 +412,9 @@ updateSynthScroll();
 const gameStage = document.getElementById('gameStage');
 const gameHero = document.getElementById('gameHero');
 const gameFireflies = document.getElementById('gameFireflies');
-const gameVinePath = document.getElementById('gameVinePath');
 const gameCityWindowsGroup = document.getElementById('gameCityWindowsGroup');
 const gameCityWindows = [];
 const gameStars = document.getElementById('gameStars');
-let gameVineLength = 0;
 
 function buildGameStars(){
   if(!gameStars || gameStars.childElementCount) return;
@@ -432,8 +430,8 @@ function buildGameStars(){
 
 function buildGameCityWindows(){
   if(!gameCityWindowsGroup || gameCityWindowsGroup.childElementCount) return;
-  for(let gx = 12; gx < 1195; gx += 14){
-    for(let gy = 30; gy < 210; gy += 14){
+  for(let gx = 12; gx < 1195; gx += 16){
+    for(let gy = 30; gy < 210; gy += 16){
       const jx = gx + (Math.random()*6 - 3);
       const jy = gy + (Math.random()*5 - 2.5);
       // les fenetres basses (pres du sol) s'allument en premier, les plus hautes en dernier
@@ -473,13 +471,6 @@ function buildGameFireflies(){
     frag.appendChild(s);
   }
   gameFireflies.appendChild(frag);
-}
-
-function setupGameVine(){
-  if(!gameVinePath) return;
-  gameVineLength = gameVinePath.getTotalLength();
-  gameVinePath.style.strokeDasharray = gameVineLength.toFixed(1);
-  gameVinePath.style.strokeDashoffset = gameVineLength.toFixed(1);
 }
 
 let gameLastGp = null;
@@ -522,16 +513,12 @@ function updateGameScroll(){
   gameHero.style.setProperty('--star2P', star2P.toFixed(3));
   gameHero.style.setProperty('--star2Opacity', star2Opacity.toFixed(3));
   gameHero.style.setProperty('--star2Scale', star2Scale.toFixed(3));
-  if(gameVinePath && gameVineLength){
-    gameVinePath.style.strokeDashoffset = (gameVineLength * (1 - gpEase)).toFixed(1);
-  }
   updateGameCityWindows(lampOn);
 }
 
 buildGameFireflies();
 buildGameStars();
 buildGameCityWindows();
-setupGameVine();
 updateGameScroll();
 
 /* ============ AMBIENT & CALME SCROLL HERO (trou noir anime) ============ */

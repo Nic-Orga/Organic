@@ -65,15 +65,46 @@
       <div class="synth-layer synth-sky"></div>
       <div class="synth-layer synth-sky-night"></div>
       <div class="synth-layer synth-stars" id="synthStars"></div>
+      <div class="synth-mountains" aria-hidden="true">
+        <div class="synth-mountain m1"></div>
+        <div class="synth-mountain m2"></div>
+        <div class="synth-mountain m3"></div>
+        <div class="synth-mountain m4"></div>
+      </div>
+      <div class="synth-cloud c1" aria-hidden="true"></div>
+      <div class="synth-cloud c2" aria-hidden="true"></div>
       <div class="synth-layer synth-sun"></div>
       <div class="synth-plane" aria-hidden="true"></div>
       <svg class="synth-layer synth-skyline" viewBox="0 0 1200 260" preserveAspectRatio="none" aria-hidden="true">
         <defs>
+          <linearGradient id="synthBuildingGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3d2758"/>
+            <stop offset="12%" stop-color="#33204d"/>
+            <stop offset="35%" stop-color="#20142f"/>
+            <stop offset="100%" stop-color="#100a1a"/>
+          </linearGradient>
+          <linearGradient id="synthBuildingBackGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#241636"/>
+            <stop offset="100%" stop-color="#140d20"/>
+          </linearGradient>
           <path id="synthSilhouette" d="M0,260 L0,150 L36,150 L36,104 L84,104 L84,168 L118,168 L118,58 L160,58 L160,152 L206,152 L206,18 L214,18 L214,152 L262,152 L262,86 L306,86 L306,176 L352,176 L352,42 L398,42 L398,176 L452,176 L452,112 L506,112 L506,182 L560,182 L560,66 L604,66 L604,182 L656,182 L656,26 L664,26 L664,182 L722,182 L722,120 L774,120 L774,190 L828,190 L828,78 L882,78 L882,190 L938,190 L938,138 L992,138 L992,178 L1046,178 L1046,116 L1096,116 L1096,168 L1150,168 L1150,132 L1200,132 L1200,260 Z"/>
           <clipPath id="synthClip"><use href="#synthSilhouette"/></clipPath>
         </defs>
-        <use href="#synthSilhouette" fill="#1a1030"/>
+        <use href="#synthSilhouette" fill="url(#synthBuildingBackGrad)" class="synth-skyline-back"/>
+        <use href="#synthSilhouette" fill="url(#synthBuildingGrad)"/>
+        <use href="#synthSilhouette" fill="none" class="synth-skyline-rim"/>
         <g id="synthWindowsGroup" clip-path="url(#synthClip)"></g>
+        <g clip-path="url(#synthClip)"><rect x="0" y="140" width="1200" height="40" fill="#0c0714" opacity=".4"/></g>
+        <rect x="209" y="2" width="2" height="16" fill="#0d0716"/>
+        <circle cx="210" cy="2" r="2.2" fill="#ff5fa3" class="synth-beacon-pink"/>
+        <rect x="656" y="10" width="3" height="16" fill="#0d0716"/>
+        <circle cx="657.5" cy="9" r="2" fill="#5fe3ff" class="synth-beacon-cyan"/>
+        <g transform="translate(415,20)">
+          <rect x="0" y="6" width="14" height="16" rx="1.5" fill="#150e22"/>
+          <circle cx="7" cy="4" r="6" fill="#150e22"/>
+          <rect x="4" y="-4" width="6" height="9" fill="#150e22"/>
+        </g>
+        <rect x="815" y="70" width="26" height="8" rx="1" fill="#150e22"/>
       </svg>
       <div class="synth-water">
         <svg viewBox="0 0 1200 260" preserveAspectRatio="none" aria-hidden="true">
@@ -111,6 +142,7 @@
           </g>
         </svg>
       </div>
+      <div class="synth-vignette" aria-hidden="true"></div>
       <div class="synth-hero-copy">
         <div class="hero-rule"></div>
         <p class="eyebrow eyebrow-synth">Onglet 01 — Synthwave</p>
@@ -132,28 +164,52 @@
       <div class="game-layer game-sky-clear"></div>
       <div class="game-layer game-sky-deep"></div>
       <div class="game-stars" id="gameStars"></div>
-      <div class="game-moonbeam"></div>
+      <div class="game-hills" aria-hidden="true">
+        <div class="game-hill h1"></div>
+        <div class="game-hill h2"></div>
+        <div class="game-hill h3"></div>
+      </div>
       <div class="game-moon"></div>
-      <div class="game-shootingstar"></div>
-      <div class="game-shootingstar2"></div>
+      <div class="game-moonbeam"></div>
+      <div class="game-shootingstar">
+        <div class="game-shootingstar-tail"></div>
+        <div class="game-shootingstar-head"></div>
+      </div>
+      <div class="game-shootingstar2">
+        <div class="game-shootingstar-tail"></div>
+        <div class="game-shootingstar-head"></div>
+      </div>
       <div class="game-fireflies" id="gameFireflies"></div>
 
-      <svg class="game-vine" viewBox="0 0 1200 420" preserveAspectRatio="none" aria-hidden="true">
-        <path id="gameVinePath" d="M20,412 C130,378 55,322 150,282 C245,240 165,192 270,152 C365,116 300,72 410,42 C495,18 570,26 660,10" fill="none" stroke="#5c9a52" stroke-width="5" stroke-linecap="round"/>
-        <g fill="#5c9a52">
-          <ellipse cx="150" cy="282" rx="10" ry="6" transform="rotate(-28 150 282)"/>
-          <ellipse cx="270" cy="152" rx="10" ry="6" transform="rotate(-32 270 152)"/>
-          <ellipse cx="410" cy="42" rx="9" ry="5" transform="rotate(-20 410 42)"/>
-        </g>
-      </svg>
+      <div class="game-treeline" aria-hidden="true"></div>
 
       <svg class="game-city" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
         <defs>
+          <linearGradient id="gameBuildingGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#356381"/>
+            <stop offset="14%" stop-color="#2c5470"/>
+            <stop offset="40%" stop-color="#1c3b4d"/>
+            <stop offset="100%" stop-color="#0a1620"/>
+          </linearGradient>
+          <linearGradient id="gameBuildingBackGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1f3f52"/>
+            <stop offset="100%" stop-color="#0c1c26"/>
+          </linearGradient>
           <path id="gameCitySilhouette" d="M0,220 L0,140 L50,140 L50,90 L100,90 L100,150 L160,150 L160,60 L210,60 L210,140 L270,140 L270,40 L320,40 L320,150 L380,150 L380,80 L430,80 L430,160 L500,160 L500,50 L550,50 L550,150 L620,150 L620,100 L670,100 L670,160 L730,160 L730,70 L780,70 L780,150 L850,150 L850,110 L900,110 L900,160 L960,160 L960,60 L1010,60 L1010,150 L1070,150 L1070,100 L1120,100 L1120,160 L1200,160 L1200,220 Z"/>
           <clipPath id="gameCityClip"><use href="#gameCitySilhouette"/></clipPath>
         </defs>
-        <use href="#gameCitySilhouette" fill="#22516b"/>
+        <use href="#gameCitySilhouette" fill="url(#gameBuildingBackGrad)" class="game-city-back"/>
+        <use href="#gameCitySilhouette" fill="url(#gameBuildingGrad)"/>
+        <use href="#gameCitySilhouette" fill="none" class="game-city-rim"/>
         <g id="gameCityWindowsGroup" clip-path="url(#gameCityClip)"></g>
+        <g clip-path="url(#gameCityClip)"><rect x="0" y="130" width="1200" height="40" fill="#050c11" opacity=".4"/></g>
+        <rect x="284" y="24" width="2" height="16" fill="#081118"/>
+        <circle cx="285" cy="23" r="2" fill="#ffe066" class="game-beacon"/>
+        <g transform="translate(975,36)">
+          <rect x="0" y="6" width="12" height="14" rx="1.5" fill="#081118"/>
+          <circle cx="6" cy="4" r="5" fill="#081118"/>
+        </g>
+        <rect x="618" y="90" width="22" height="7" rx="1" fill="#081118"/>
       </svg>
       <svg class="game-road" viewBox="0 0 1200 260" preserveAspectRatio="none" aria-hidden="true">
         <path d="M300,0 L900,0 L1150,260 L50,260 Z" fill="#0b1210"/>
@@ -171,20 +227,9 @@
         </svg>
       </div>
 
-      <div class="game-canopy-wrap left">
-        <svg class="game-canopy" viewBox="0 0 320 260" aria-hidden="true">
-          <path d="M0,0 L280,0 C260,40 300,70 260,110 C300,130 270,170 220,180 C240,210 190,230 150,210 C130,250 70,250 60,210 C20,225 -10,190 10,150 C-10,120 10,80 40,60 C10,40 -10,10 0,0 Z" fill="#0e2417"/>
-          <path d="M0,0 L200,0 C185,30 210,55 180,85 C160,60 130,70 120,40 C90,50 70,30 60,0 Z" fill="#163a24"/>
-        </svg>
-      </div>
-      <div class="game-canopy-wrap right">
-        <svg class="game-canopy" viewBox="0 0 320 260" aria-hidden="true">
-          <path d="M0,0 L280,0 C260,40 300,70 260,110 C300,130 270,170 220,180 C240,210 190,230 150,210 C130,250 70,250 60,210 C20,225 -10,190 10,150 C-10,120 10,80 40,60 C10,40 -10,10 0,0 Z" fill="#0e2417"/>
-          <path d="M0,0 L200,0 C185,30 210,55 180,85 C160,60 130,70 120,40 C90,50 70,30 60,0 Z" fill="#163a24"/>
-        </svg>
-      </div>
-
       <div class="game-mist"></div>
+      <div class="game-mist-drift" aria-hidden="true"></div>
+      <div class="game-vignette" aria-hidden="true"></div>
 
       <div class="game-hero-copy">
         <div class="hero-rule hero-rule-game"></div>
