@@ -19,7 +19,7 @@ input,select{font-family:inherit;}
 
 header.site-header{position:sticky; top:0; z-index:30; background:rgba(6,7,10,.86); backdrop-filter:blur(10px); border-bottom:1px solid rgba(237,234,226,.08);}
 .header-inner{max-width:960px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px;}
-.logo{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.4rem; margin-left:-12px;}
+.logo{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(2.2rem,6vw,3.4rem); margin-left:-12px;}
 nav.main-nav{display:flex; gap:22px; font-family:'Space Grotesk',sans-serif; font-size:.88rem; flex-wrap:wrap;}
 nav.main-nav a{text-decoration:none; color:rgba(237,234,226,.55); padding-bottom:4px; border-bottom:2px solid transparent; transition:color .2s,border-color .2s;}
 nav.main-nav a[data-page="synthwave"].active, nav.main-nav a[data-page="synthwave"]:hover{color:#F2925B; border-color:#F2925B;}
