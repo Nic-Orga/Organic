@@ -18,9 +18,10 @@ input,select{font-family:inherit;}
 .btn-ghost{background:transparent; border:1px solid rgba(237,234,226,.2); color:#EDEAE2;}
 
 header.site-header{position:sticky; top:0; z-index:30; background:rgba(6,7,10,.86); backdrop-filter:blur(10px); border-bottom:1px solid rgba(237,234,226,.08);}
-.header-inner{max-width:960px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px;}
-.logo-svg{margin-left:-12px;}
+.header-inner{max-width:960px; margin:0 auto; padding:16px 24px 16px 180px; min-height:78px; display:flex; align-items:center; justify-content:flex-end; gap:20px; box-sizing:border-box;}
+.logo-svg{position:absolute; left:16px; top:8px;}
 .logo-svg:hover{transform:scale(1.08); filter:drop-shadow(0 0 8px rgba(255,224,239,.5));}
+@media (max-width:680px){ .header-inner{padding:94px 24px 16px; min-height:0; justify-content:flex-start;} }
 nav.main-nav{display:flex; gap:22px; font-family:'Space Grotesk',sans-serif; font-size:.88rem; flex-wrap:wrap;}
 nav.main-nav a{text-decoration:none; color:rgba(237,234,226,.55); padding-bottom:4px; border-bottom:2px solid transparent; transition:color .2s,border-color .2s;}
 nav.main-nav a[data-page="synthwave"].active{color:#F2925B; border-color:#F2925B;}
