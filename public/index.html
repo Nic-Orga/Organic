@@ -13,12 +13,18 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <span class="logo">Organic</span>
+    <svg class="logo-svg" width="150" height="70" viewBox="0 0 150 70" style="cursor:pointer;transition:transform .3s ease,filter .3s ease;" onClick="goHome()">
+      <ellipse cx="75" cy="35" rx="68" ry="22" fill="none" stroke="#ffe0ef" stroke-width="1.2"></ellipse>
+      <ellipse cx="75" cy="35" rx="68" ry="22" fill="none" stroke="#ffe0ef" stroke-width="1" transform="scale(0.55,1)" style="transform-origin:75px 35px;"></ellipse>
+      <ellipse cx="75" cy="35" rx="68" ry="22" fill="none" stroke="#ffe0ef" stroke-width="1" transform="scale(0.85,1)" style="transform-origin:75px 35px;"></ellipse>
+      <line x1="75" y1="13" x2="75" y2="57" stroke="#ffe0ef" stroke-width="1"></line>
+      <text x="75" y="40" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="13" fill="#EDEAE2" style="paint-order:stroke;stroke:#0d0f1c;stroke-width:2px;">Organic</text>
+    </svg>
     <nav class="main-nav">
-      <a href="#home" data-page="home" class="active">Accueil</a>
-      <a href="#synthwave" data-page="synthwave">Synthwave</a>
-      <a href="#game" data-page="game">Musique de jeu</a>
-      <a href="#calm" data-page="calm">Ambient &amp; Calme</a>
+      <a href="#home" data-page="home" class="nav-home active">Accueil</a>
+      <a href="#synthwave" data-page="synthwave" class="nav-synthwave">Synthwave</a>
+      <a href="#game" data-page="game" class="nav-game">Musique de jeu</a>
+      <a href="#calm" data-page="calm" class="nav-calm">Ambient &amp; Calme</a>
     </nav>
   </div>
 </header>

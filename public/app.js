@@ -29,6 +29,7 @@ function showPage(page){
   currentPageId = page;
 }
 window.addEventListener('hashchange', () => showPage(location.hash.slice(1) || 'home'));
+function goHome(){ if(location.hash === '#home' || location.hash === '') showPage('home'); else location.hash = 'home'; }
 
 /* ============ HOME BACKGROUND (etend le halftone jusqu'aux boutons de genre) ============ */
 function sizeHomeBg(){

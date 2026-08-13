@@ -19,13 +19,18 @@ input,select{font-family:inherit;}
 
 header.site-header{position:sticky; top:0; z-index:30; background:rgba(6,7,10,.86); backdrop-filter:blur(10px); border-bottom:1px solid rgba(237,234,226,.08);}
 .header-inner{max-width:960px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px;}
-.logo{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(2.2rem,6vw,3.4rem); margin-left:-12px;}
+.logo-svg{margin-left:-12px;}
+.logo-svg:hover{transform:scale(1.08); filter:drop-shadow(0 0 8px rgba(255,224,239,.5));}
 nav.main-nav{display:flex; gap:22px; font-family:'Space Grotesk',sans-serif; font-size:.88rem; flex-wrap:wrap;}
 nav.main-nav a{text-decoration:none; color:rgba(237,234,226,.55); padding-bottom:4px; border-bottom:2px solid transparent; transition:color .2s,border-color .2s;}
-nav.main-nav a[data-page="synthwave"].active, nav.main-nav a[data-page="synthwave"]:hover{color:#F2925B; border-color:#F2925B;}
-nav.main-nav a[data-page="game"].active, nav.main-nav a[data-page="game"]:hover{color:#8FE388; border-color:#8FE388;}
-nav.main-nav a[data-page="calm"].active, nav.main-nav a[data-page="calm"]:hover{color:#D9B77A; border-color:#D9B77A;}
-nav.main-nav a[data-page="home"].active, nav.main-nav a[data-page="home"]:hover{color:#EDEAE2; border-color:#EDEAE2;}
+nav.main-nav a[data-page="synthwave"].active{color:#F2925B; border-color:#F2925B;}
+nav.main-nav a[data-page="game"].active{color:#8FE388; border-color:#8FE388;}
+nav.main-nav a[data-page="calm"].active{color:#D9B77A; border-color:#D9B77A;}
+nav.main-nav a[data-page="home"].active{color:#EDEAE2; border-color:#EDEAE2;}
+.nav-home:hover{color:#EDEAE2; border-color:rgba(237,234,226,.4);}
+.nav-synthwave:hover{color:#F2925B; border-color:rgba(242,146,91,.5);}
+.nav-game:hover{color:#8FE388; border-color:rgba(143,227,136,.5);}
+.nav-calm:hover{color:#D9B77A; border-color:rgba(217,183,122,.5);}
 @media (max-width:680px){ .header-inner{flex-wrap:wrap;} nav.main-nav{gap:14px; font-size:.8rem;} }
 
 /* ============ scroll reveal + parallax utility ============ */
