@@ -126,7 +126,7 @@ nav.main-nav a[data-page="home"].active{color:#EDEAE2; border-color:#EDEAE2;}
 .synth-water{position:absolute; left:0; right:0; bottom:4vh; height:10vh; overflow:hidden; opacity:.42; z-index:2;}
 .synth-water svg{position:absolute; left:0; bottom:0; width:100%; height:260px; transform:scaleY(-1); transform-origin:bottom; filter:url(#synthWobble) blur(.8px);}
 .synth-water::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(18,58,88,0) 0%, #123a58 92%);}
-.synth-ground{position:absolute; left:0; right:0; bottom:0; height:12vh; background:linear-gradient(180deg,#1c5f8a,#123a58); z-index:3; filter:brightness(calc(1 - var(--p,0) * .4));}
+.synth-ground{position:absolute; left:0; right:0; bottom:0; height:14vh; background:linear-gradient(180deg,#1c5f8a,#123a58); z-index:3; filter:brightness(calc(1 - var(--p,0) * .4));}
 .synth-palm-wrap{position:absolute; bottom:2vh; width:110px; height:220px; z-index:1; transform-origin:bottom center;}
 .synth-palm-wrap.left{left:0; transform:translateY(calc(var(--pTree,0) * 95px)) rotate(calc(var(--pTree,0) * 90deg));}
 .synth-palm-wrap.right{right:0; transform:translateY(calc(var(--pTree,0) * 95px)) rotate(calc(var(--pTree,0) * -90deg));}

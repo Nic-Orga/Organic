@@ -390,13 +390,26 @@ function buildSynthWindows(){
   }
 }
 
-function updateSynthWindows(p){
-  synthWindows.forEach(w => {
-    const lit = p > w.threshold;
-    w.el.classList.toggle('lit', lit);
-    w.reflectEl.classList.toggle('lit', lit);
-  });
+function createWindowLighter(items, applyLit){
+  items.sort((a, b) => a.threshold - b.threshold);
+  let boundary = 0;
+  return function(p){
+    let lo = 0, hi = items.length;
+    while(lo < hi){
+      const mid = (lo + hi) >> 1;
+      if(items[mid].threshold < p) lo = mid + 1; else hi = mid;
+    }
+    const newBoundary = lo;
+    if(newBoundary > boundary){
+      for(let i = boundary; i < newBoundary; i++) applyLit(items[i], true);
+    } else if(newBoundary < boundary){
+      for(let i = newBoundary; i < boundary; i++) applyLit(items[i], false);
+    }
+    boundary = newBoundary;
+  };
 }
+
+let updateSynthWindows = () => {};
 
 let synthLastP = null;
 function updateSynthScroll(){
@@ -416,6 +429,10 @@ function updateSynthScroll(){
 
 buildSynthStars();
 buildSynthWindows();
+updateSynthWindows = createWindowLighter(synthWindows, (w, lit) => {
+  w.el.classList.toggle('lit', lit);
+  w.reflectEl.classList.toggle('lit', lit);
+});
 updateSynthScroll();
 
 /* ============ MUSIQUE DE JEU SCROLL HERO (route, lampadaire, etoile filante) ============ */
@@ -495,9 +512,7 @@ function buildGameCityWindows(){
   buildGameFaceWindows(gameFacesNear, gameCityWindowsNearGroup);
 }
 
-function updateGameCityWindows(lampOn){
-  gameCityWindows.forEach(w => w.el.classList.toggle('lit', lampOn > w.threshold));
-}
+let updateGameCityWindows = () => {};
 
 function buildGameFireflies(){
   if(!gameFireflies || gameFireflies.childElementCount) return;
@@ -561,6 +576,7 @@ function updateGameScroll(){
 buildGameFireflies();
 buildGameStars();
 buildGameCityWindows();
+updateGameCityWindows = createWindowLighter(gameCityWindows, (w, lit) => w.el.classList.toggle('lit', lit));
 updateGameScroll();
 
 /* ============ AMBIENT & CALME SCROLL HERO (trou noir anime) ============ */
