@@ -1057,7 +1057,9 @@ document.getElementById('add-form').addEventListener('submit', async (e) => {
 
   try{
     const res = await fetch('/api/tracks', { method: 'POST', headers: { 'x-admin-password': adminPassword }, body: fd });
-    const data = await res.json();
+    let data;
+    try{ data = await res.json(); }
+    catch{ throw new Error(`Réponse inattendue du serveur (${res.status}). Réessaie, et si ça persiste, verifie la taille des fichiers (20 Mo max).`); }
     if(!res.ok) throw new Error(data.error || "Erreur lors de l'ajout.");
     await loadCatalog();
     addModal.classList.remove('open'); if(!cartPanel.classList.contains('open')) scrim.classList.remove('show');

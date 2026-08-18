@@ -11,7 +11,7 @@ const router = express.Router();
 // (pas d'écriture sur le disque du serveur, qui ne persiste pas sur l'hébergement gratuit).
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 8 * 1024 * 1024 }, // 8 Mo par fichier
+  limits: { fileSize: 20 * 1024 * 1024 }, // 20 Mo par fichier
   fileFilter: (req, file, cb) => {
     if (file.fieldname === 'audio' && !file.mimetype.startsWith('audio/')) {
       return cb(new Error('Le fichier "audio" doit être un fichier audio.'));
