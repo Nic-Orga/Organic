@@ -9,8 +9,13 @@ create table if not exists tracks (
   download_link text,
   cover_url text,
   audio_url text,
+  preview_start numeric not null default 0,
   created_at bigint not null
 );
+
+-- Si la table existe déjà (site créé avant l'ajout de ce champ), lance
+-- juste cette ligne une fois dans le SQL Editor de Supabase :
+-- alter table tracks add column if not exists preview_start numeric not null default 0;
 
 -- La table est lue directement par le serveur avec la clé "service role",
 -- qui contourne la sécurité au niveau des lignes (RLS). On peut donc laisser

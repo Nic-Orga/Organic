@@ -33,6 +33,7 @@ function toApiShape(row) {
     price: row.price,
     coverUrl: row.cover_url,
     audioUrl: row.audio_url,
+    previewStart: Number(row.preview_start) || 0,
     createdAt: Number(row.created_at)
   };
 }
@@ -54,7 +55,7 @@ router.get('/', async (req, res) => {
     const supabase = getSupabase();
     const { data, error } = await supabase
       .from('tracks')
-      .select('id,title,genre,price,cover_url,audio_url,created_at')
+      .select('id,title,genre,price,cover_url,audio_url,preview_start,created_at')
       .order('created_at', { ascending: true });
     if (error) throw error;
     res.json(data.map(toApiShape));
@@ -67,11 +68,13 @@ router.get('/', async (req, res) => {
 // POST /api/tracks -> ajouter un titre (protégé)
 router.post('/', adminAuth, upload.fields([{ name: 'audio', maxCount: 1 }, { name: 'cover', maxCount: 1 }]), async (req, res) => {
   try {
-    const { title, genre, price, downloadLink } = req.body;
+    const { title, genre, price, downloadLink, previewStart } = req.body;
     if (!title || !title.trim()) return res.status(400).json({ error: 'Titre requis.' });
     if (!VALID_GENRES.includes(genre)) return res.status(400).json({ error: 'Genre invalide.' });
     const numPrice = parseFloat(price);
     if (isNaN(numPrice) || numPrice < 0) return res.status(400).json({ error: 'Prix invalide.' });
+    const numPreviewStart = parseFloat(previewStart);
+    const safePreviewStart = isNaN(numPreviewStart) || numPreviewStart < 0 ? 0 : numPreviewStart;
 
     const id = 't_' + crypto.randomUUID();
     const audioFile = req.files?.audio?.[0];
@@ -91,6 +94,7 @@ router.post('/', adminAuth, upload.fields([{ name: 'audio', maxCount: 1 }, { nam
       download_link: downloadLink || null,
       cover_url: coverUrl,
       audio_url: audioUrl,
+      preview_start: safePreviewStart,
       created_at: Date.now()
     });
     if (error) throw error;

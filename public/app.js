@@ -906,6 +906,9 @@ function handlePlay(id){
   if(!t || !t.audioUrl){ alert("Aucun aperçu audio n'a été ajouté pour ce titre."); return; }
   if(currentPlayingId === id){ player.pause(); currentPlayingId = null; refreshPlayIcons(); return; }
   player.src = t.audioUrl;
+  if(t.previewStart > 0){
+    player.addEventListener('loadedmetadata', () => { player.currentTime = t.previewStart; }, { once: true });
+  }
   player.play();
   currentPlayingId = id;
   refreshPlayIcons();
@@ -1038,7 +1041,38 @@ document.getElementById('add-fab').addEventListener('click', () => {
   if(currentPage !== 'home') document.getElementById('at-genre').value = currentPage;
   addModal.classList.add('open'); scrim.classList.add('show');
 });
-document.getElementById('add-cancel').addEventListener('click', () => { addModal.classList.remove('open'); if(!cartPanel.classList.contains('open')) scrim.classList.remove('show'); });
+document.getElementById('add-cancel').addEventListener('click', () => { addModal.classList.remove('open'); if(!cartPanel.classList.contains('open')) scrim.classList.remove('show'); resetAudioPreview(); });
+
+/* ---- apercu local du fichier audio + choix du passage a jouer ---- */
+const atAudioInput = document.getElementById('at-audio');
+const atAudioPreviewWrap = document.getElementById('at-audio-preview-wrap');
+const atAudioPreview = document.getElementById('at-audio-preview');
+const atPreviewStart = document.getElementById('at-preview-start');
+let atAudioObjectUrl = null;
+
+function resetAudioPreview(){
+  if(atAudioObjectUrl){ URL.revokeObjectURL(atAudioObjectUrl); atAudioObjectUrl = null; }
+  atAudioPreview.removeAttribute('src');
+  atAudioPreviewWrap.classList.add('hidden');
+  atPreviewStart.value = '0';
+}
+
+atAudioInput.addEventListener('change', () => {
+  const file = atAudioInput.files[0];
+  if(atAudioObjectUrl){ URL.revokeObjectURL(atAudioObjectUrl); atAudioObjectUrl = null; }
+  if(file){
+    atAudioObjectUrl = URL.createObjectURL(file);
+    atAudioPreview.src = atAudioObjectUrl;
+    atAudioPreviewWrap.classList.remove('hidden');
+    atPreviewStart.value = '0';
+  } else {
+    resetAudioPreview();
+  }
+});
+
+document.getElementById('at-use-current-time').addEventListener('click', () => {
+  atPreviewStart.value = Math.max(0, Math.floor(atAudioPreview.currentTime));
+});
 
 document.getElementById('add-form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -1050,6 +1084,7 @@ document.getElementById('add-form').addEventListener('submit', async (e) => {
   fd.append('genre', document.getElementById('at-genre').value);
   fd.append('price', document.getElementById('at-price').value);
   fd.append('downloadLink', document.getElementById('at-link').value.trim());
+  fd.append('previewStart', atPreviewStart.value || '0');
   const audioFile = document.getElementById('at-audio').files[0];
   const coverFile = document.getElementById('at-cover').files[0];
   if(audioFile) fd.append('audio', audioFile);
@@ -1065,6 +1100,7 @@ document.getElementById('add-form').addEventListener('submit', async (e) => {
     addModal.classList.remove('open'); if(!cartPanel.classList.contains('open')) scrim.classList.remove('show');
     e.target.reset();
     document.getElementById('at-price').value = '2.5';
+    resetAudioPreview();
   }catch(err){
     alert(err.message);
   }finally{
